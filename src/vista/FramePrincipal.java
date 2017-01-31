@@ -6,32 +6,34 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JSplitPane;
 
 public class FramePrincipal extends JFrame {
 
 	public void iniciarGUI(){
-		// Panel Iquierda
-		JPanel panelIzquierdo = new JPanel();
+		// Panel Iquierdo
+		PanelIzquierdo panelIzquierdo = new PanelIzquierdo();
 		
 		// Panel Logo
-		JPanel panelLogo = new JPanel();
-		panelLogo.add(new PanelLogo());
-		
+		PanelLogo panelLogo = new PanelLogo();
+		JScrollPane scroll = new JScrollPane(panelLogo);
 		
 		// Panel Pad
-		JPanel panelPad = new JPanel();
-		panelPad.add(new PanelPad());
+		PanelPad panelPad = new PanelPad();
+		JScrollPane scroll2 = new JScrollPane(panelPad);
 		
 		// Panel base que contiene otros 3 paneles
-		JSplitPane splitPaneDerecho = new JSplitPane(JSplitPane.VERTICAL_SPLIT, panelLogo, panelPad);
+		JSplitPane splitPaneDerecho = new JSplitPane(JSplitPane.VERTICAL_SPLIT, scroll, scroll2);
 		splitPaneDerecho.setResizeWeight(0.5);
 		splitPaneDerecho.setEnabled(false);
 		
 		
+		
 		// Panel base que contiene otros 3 paneles
 		JSplitPane splitPanelPrincipal = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panelIzquierdo, splitPaneDerecho);
+		splitPanelPrincipal.setEnabled(true);
 		splitPanelPrincipal.setResizeWeight(0.7);
 		getContentPane().add(splitPanelPrincipal);
 		
