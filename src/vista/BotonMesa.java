@@ -19,6 +19,7 @@ public class BotonMesa extends JButton implements ActionListener{
 		setOpaque(false);
 		setContentAreaFilled(false);
 		setBorderPainted(false);
+		setFocusable(false);
 		
 		addActionListener(this);
 	}

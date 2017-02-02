@@ -13,6 +13,8 @@ import javax.swing.JSplitPane;
 public class FramePrincipal extends JFrame {
 
 	public void iniciarGUI(){
+		// MenuBar
+		setJMenuBar(new MenuBar());
 		// Panel Iquierdo
 		PanelIzquierdo panelIzquierdo = new PanelIzquierdo();
 		
@@ -40,11 +42,12 @@ public class FramePrincipal extends JFrame {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
-		//pack();
+		
 	}
 	
 	// Constructor
 	public FramePrincipal(){
+		super("RESTAURANTECH");
 		iniciarGUI();
 	}
 	
