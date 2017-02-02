@@ -21,6 +21,7 @@ public class BotonMesa extends JButton implements ActionListener{
 		setBorderPainted(false);
 		setFocusable(false);
 		
+		// Escuchadores
 		addActionListener(this);
 	}
 
@@ -28,7 +29,8 @@ public class BotonMesa extends JButton implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		System.out.print("Boton click");
+		new DialogOpcionMesa();
+		//new DialogAbrirMesa();
 	}
 	
 	
