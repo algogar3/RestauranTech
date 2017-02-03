@@ -1,5 +1,7 @@
 package vista;
 
+import java.awt.Dimension;
+
 import javax.swing.BoxLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -27,15 +29,20 @@ public class DialogAnyadirProductos extends JOptionPane {
 		tabbedPaneSuperior.addTab("Comida", panelComida);
 		tabbedPaneSuperior.addTab("Bebida", panelBebida);
 		tabbedPaneSuperior.addTab("Postre", panelPostre);
+		tabbedPaneSuperior.setPreferredSize(new Dimension(600,300));
 		
 		// Instanciamos el scrollPane
 		scrollPaneInferior = new JScrollPane();
+		scrollPaneInferior.setPreferredSize(new Dimension(600,300));
 		
 		// Instanciamos el panel contenedor y añadimos los 2 paneles
 		panelContenedor = new JPanel();
 		panelContenedor.setLayout(new BoxLayout(panelContenedor, BoxLayout.Y_AXIS));
 		panelContenedor.add(tabbedPaneSuperior);
 		panelContenedor.add(scrollPaneInferior);
+		
+		// Mostral panel mediante un Dialog
+		showConfirmDialog(this, panelContenedor, "Introduce productos", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 	}
 	
 }

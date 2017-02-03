@@ -29,8 +29,10 @@ public class BotonMesa extends JButton implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		new DialogOpcionMesa();
+		//new DialogOpcionMesa();
 		//new DialogAbrirMesa();
+		//new DialogAnyadirProductos();
+		new DialogVerComanda();
 	}
 	
 	

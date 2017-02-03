@@ -23,7 +23,7 @@ public class FramePrincipal extends JFrame {
 		JScrollPane scroll = new JScrollPane(panelLogo);
 		
 		// Panel Pad
-		PanelPad panelPad = new PanelPad();
+		 panel = new PanelPad();
 		JScrollPane scroll2 = new JScrollPane(panelPad);
 		
 		// Panel base que contiene otros 3 paneles

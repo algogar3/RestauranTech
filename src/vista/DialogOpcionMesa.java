@@ -11,7 +11,6 @@ public class DialogOpcionMesa extends JOptionPane {
 	// Variables
 	private ButtonGroup buttonGroup;
 	private JRadioButton radioButtonAbrirMesa;
-	private JRadioButton radioButtonCobrarMesa;
 	private JRadioButton radioButtonVerComanda;
 	private JRadioButton radioButtonAnyadirProductos;
 	
@@ -33,20 +32,17 @@ public class DialogOpcionMesa extends JOptionPane {
 		
 		// Se instancian los radiobutton
 		radioButtonAbrirMesa = new JRadioButton("Abrir mesa", true);
-		radioButtonCobrarMesa = new JRadioButton("Cobrar mesa", false);
 		radioButtonVerComanda = new JRadioButton("Ver Comanda", false);
 		radioButtonAnyadirProductos = new JRadioButton("Añadir producto", false);
 		
 		// Se añaden los radiobutton al buttongroup
 		buttonGroup = new ButtonGroup();
 		buttonGroup.add(radioButtonAbrirMesa);
-		buttonGroup.add(radioButtonCobrarMesa);
 		buttonGroup.add(radioButtonVerComanda);
 		buttonGroup.add(radioButtonAnyadirProductos);
 		
 		// Se añaden los radiobutton al panel
 		panelDialog.add(radioButtonAbrirMesa);
-		panelDialog.add(radioButtonCobrarMesa);
 		panelDialog.add(radioButtonVerComanda);
 		panelDialog.add(radioButtonAnyadirProductos);
 		
