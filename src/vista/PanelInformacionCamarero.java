@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 public class PanelInformacionCamarero extends JPanel {
 	
 	// Variables
-	private JPanel panelContenedor;
 	private JLabel etiquetaNombre;
 	private JLabel etiquetaApellidos;
 	private JLabel etiquetaId;
@@ -16,18 +15,22 @@ public class PanelInformacionCamarero extends JPanel {
 	// Constructor
 	public PanelInformacionCamarero(){
 		iniciarGUI();
+		this.setVisible(true);
+		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 	}
 	
 	private void iniciarGUI(){
-		// Panel
-		panelContenedor = new JPanel();
-		panelContenedor.setLayout(new BoxLayout(panelContenedor, BoxLayout.Y_AXIS));
 		
 		// Labels
 		etiquetaNombre = new JLabel("Nombre: ");
-		etiquetaNombre = new JLabel("Apellidos: ");
-		etiquetaNombre = new JLabel("Id: ");
-		etiquetaNombre = new JLabel("Permisos: ");
+		etiquetaApellidos = new JLabel("Apellidos: ");
+		etiquetaId = new JLabel("Id: ");
+		etiquetaPermisos = new JLabel("Permisos: ");
+		
+		add(etiquetaNombre);
+		add(etiquetaApellidos);
+		add(etiquetaId);
+		add(etiquetaPermisos);
 		
 	}
 

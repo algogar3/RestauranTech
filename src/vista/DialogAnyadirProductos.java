@@ -6,11 +6,13 @@ import javax.swing.BoxLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 
 public class DialogAnyadirProductos extends JOptionPane {
 	
 	// Variables
+	private JSplitPane panelDivisor;
 	private JPanel panelContenedor;
 	private JTabbedPane tabbedPaneSuperior;
 	private JScrollPane scrollPaneInferior;
@@ -41,8 +43,12 @@ public class DialogAnyadirProductos extends JOptionPane {
 		panelContenedor.add(tabbedPaneSuperior);
 		panelContenedor.add(scrollPaneInferior);
 		
+		PanelPad panelPad = new PanelPad();
+		
+		panelDivisor = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panelContenedor, panelPad);
+		
 		// Mostral panel mediante un Dialog
-		showConfirmDialog(this, panelContenedor, "Introduce productos", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+		showConfirmDialog(this, panelDivisor, "Introduce productos", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 	}
 	
 }

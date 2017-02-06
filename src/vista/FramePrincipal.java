@@ -20,14 +20,13 @@ public class FramePrincipal extends JFrame {
 		
 		// Panel Logo
 		PanelLogo panelLogo = new PanelLogo();
-		JScrollPane scroll = new JScrollPane(panelLogo);
+		//JScrollPane scroll = new JScrollPane(panelLogo);
 		
 		// Panel Pad
-		 panel = new PanelPad();
-		JScrollPane scroll2 = new JScrollPane(panelPad);
+		PanelInformacionCamarero panelInfoCamarero = new PanelInformacionCamarero();
 		
 		// Panel base que contiene otros 3 paneles
-		JSplitPane splitPaneDerecho = new JSplitPane(JSplitPane.VERTICAL_SPLIT, scroll, scroll2);
+		JSplitPane splitPaneDerecho = new JSplitPane(JSplitPane.VERTICAL_SPLIT, panelLogo, panelInfoCamarero);
 		splitPaneDerecho.setResizeWeight(0.5);
 		splitPaneDerecho.setEnabled(false);
 		
