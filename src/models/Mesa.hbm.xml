@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 07-feb-2017 12:58:55 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="models.Mesa" table="mesa" catalog="restaurantech" optimistic-lock="version">
+        <id name="idMesa" type="java.lang.Integer">
+            <column name="id_mesa" />
+            <generator class="identity" />
+        </id>
+        <property name="capacidad" type="int">
+            <column name="capacidad" not-null="true" />
+        </property>
+        <property name="ocupada" type="boolean">
+            <column name="ocupada" not-null="true" />
+        </property>
+        <set name="servicios" table="servicio" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_mesa" not-null="true" />
+            </key>
+            <one-to-many class="models.Servicio" />
+        </set>
+    </class>
+</hibernate-mapping>

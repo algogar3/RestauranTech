@@ -1,1 +1,4 @@
-/vista/
+/hibernate.cfg.xml
+/hibernate.reveng.xml
+/models/
+/controller/

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 07-feb-2017 12:58:55 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="models.Facturacion" table="facturacion" catalog="restaurantech" optimistic-lock="version">
+        <id name="idFacturacion" type="java.lang.Integer">
+            <column name="id_facturacion" />
+            <generator class="identity" />
+        </id>
+        <property name="fecha" type="date">
+            <column name="fecha" length="10" not-null="true" />
+        </property>
+        <property name="cantidadComensales" type="int">
+            <column name="cantidad_comensales" not-null="true" />
+        </property>
+        <property name="cantidadFacturada" type="big_decimal">
+            <column name="cantidad_facturada" precision="6" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
