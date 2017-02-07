@@ -3,14 +3,20 @@ package vista;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+import org.hibernate.SessionFactory;
+import org.hibernate.Session;
+import models.SessionFactoryUtil;
 import javax.swing.JSplitPane;
 
 public class FramePrincipal extends JFrame {
+	
+	// Variables
+	public static SessionFactory sessionFactory;
+	public static Session session;
 
 	public void iniciarGUI(){
 		// MenuBar
@@ -51,6 +57,8 @@ public class FramePrincipal extends JFrame {
 	}
 	
 	public static void main(String[] args){
+		sessionFactory = SessionFactoryUtil.getSessionFactory();
+		session = sessionFactory.openSession();
 		new FramePrincipal();
 	}
 

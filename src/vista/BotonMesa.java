@@ -9,11 +9,24 @@ import javax.swing.JButton;
 
 public class BotonMesa extends JButton implements ActionListener{
 	
+	// Atributos
+	private int idBotonMesa;
+
 	// Constructor
 	public BotonMesa(){
 		iniciarBotonMesa();
 	}
 	
+	// Setters y Getters
+	public int getIdBotonMesa() {
+		return idBotonMesa;
+	}
+
+	public void setIdBotonMesa(int idBotonMesa) {
+		this.idBotonMesa = idBotonMesa;
+	}
+	
+	// Método iniciarBoton
 	public void iniciarBotonMesa(){
 		setIcon(new ImageIcon("img/mesa256.png"));
 		setOpaque(false);
@@ -34,6 +47,8 @@ public class BotonMesa extends JButton implements ActionListener{
 		new DialogAnyadirProductos();
 		//new DialogVerComanda();
 	}
+	
+	
 	
 	
 
