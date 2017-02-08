@@ -1,4 +1,4 @@
-package vista;
+package vistas;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -26,7 +26,6 @@ public class FramePrincipal extends JFrame {
 		
 		// Panel Logo
 		PanelLogo panelLogo = new PanelLogo();
-		//JScrollPane scroll = new JScrollPane(panelLogo);
 		
 		// Panel Pad
 		PanelInformacionCamarero panelInfoCamarero = new PanelInformacionCamarero();
@@ -44,6 +43,7 @@ public class FramePrincipal extends JFrame {
 		splitPanelPrincipal.setResizeWeight(0.7);
 		getContentPane().add(splitPanelPrincipal);
 		
+		// Configuraciones de la ventana
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
@@ -52,8 +52,14 @@ public class FramePrincipal extends JFrame {
 	
 	// Constructor
 	public FramePrincipal(){
+		// Título de la ventana
 		super("RESTAURANTECH");
+		
+		// Llamada al método iniciarGUI()
 		iniciarGUI();
+		
+		// Se llama al diálogo de login
+		new DialogLogin();
 	}
 	
 	public static void main(String[] args){

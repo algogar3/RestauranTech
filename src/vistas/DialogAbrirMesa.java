@@ -1,4 +1,4 @@
-package vista;
+package vistas;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -6,40 +6,42 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
-import vista.PanelPad.OnBotonPulsado;
+import vistas.PanelPad.OnBotonPulsado;
 
 public class DialogAbrirMesa extends JOptionPane implements OnBotonPulsado{
 	
 	// Variables
-	private JSplitPane panelDivisor;
+	private JSplitPane panelContenedor;
 	private JPanel panelTextField;
 	private JTextField textFieldNumeroPersonas;
 	private JLabel etiquetaCantidad;
 	
 	// Constructor
-	public DialogAbrirMesa(){
-		iniciarDialogAbrirMesa();
+	public DialogAbrirMesa(int idBotonMesa){
+		iniciarDialogAbrirMesa(idBotonMesa);
 	}
 	
-	private void iniciarDialogAbrirMesa(){
+	// Mëtodo iniciarDialogAbrirMesa
+	private void iniciarDialogAbrirMesa(int idBotonMesa){
+		// Instanciación del panel Pad y suscripción a la interfaz OnBotonPulsado
 		PanelPad panelPad = new PanelPad();
 		panelPad.setOnBotonPulsadoListener(this);
 		
+		// Instanciación del panel TextField e introducción de sus elementos
 		panelTextField = new JPanel();
 		textFieldNumeroPersonas = new JTextField(10);
 		etiquetaCantidad = new JLabel("¿Número de comensales?");
 		panelTextField.add(etiquetaCantidad);
 		panelTextField.add(textFieldNumeroPersonas);
 		
-		panelDivisor = new JSplitPane(JSplitPane.VERTICAL_SPLIT, panelTextField, panelPad);
+		// Instanciación del panel Contenedor, que contiene los 2 paneles anteriores
+		panelContenedor = new JSplitPane(JSplitPane.VERTICAL_SPLIT, panelTextField, panelPad);
 		
-		
-		showConfirmDialog(this, panelDivisor, "Abrir mesa", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-		
-		
-		
+		// Instanciaciónd del diálogo
+		showConfirmDialog(this, panelContenedor, "Abrir mesa " + idBotonMesa, JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 	}
 
+	// Desarrollo de los métodos de la interfaz OnBotonPulsado
 	@Override
 	public void botonPulsado(String buffer) {
 		// TODO Auto-generated method stub

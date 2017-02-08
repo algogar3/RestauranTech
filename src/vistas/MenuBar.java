@@ -1,4 +1,4 @@
-package vista;
+package vistas;
 
 import java.awt.ItemSelectable;
 import java.awt.event.ActionEvent;

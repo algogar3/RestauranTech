@@ -1,0 +1,33 @@
+/*
+ * Controlador que tiene como función comprobar si una mesa 
+ * está abierta o no. De esta manera no se podrá abri una 
+ * mesa varias veces, y no se podrán asignar comandas a mesas 
+ * no abiertas.
+ * El controlador se compone de un método que devolverá un 
+ * booleano. Su valor será TRUE si la mesa está abierta, y 
+ * FALSE si la mesa no está abierta.
+ * */
+
+package controllers;
+
+import org.hibernate.Session;
+import models.Mesa;
+
+public class EstadoMesa {
+	
+	// Método comprobarEstadoMesa
+	public static boolean comprobarEstadoMesa(Session session, int idBotonMesa){
+		// Se recupera el objeto mesa cuya ID es igual a la que se pasa como 
+		// parámetro en la definición del método
+		Mesa mesa = (Mesa) session.get(Mesa.class, idBotonMesa);
+		
+		// Se comprueba el valor del atributo ocupada
+		if(mesa.isOcupada()){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+}

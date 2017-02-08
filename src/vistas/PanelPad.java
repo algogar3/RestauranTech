@@ -1,4 +1,4 @@
-package vista;
+package vistas;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;

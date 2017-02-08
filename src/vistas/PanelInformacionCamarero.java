@@ -1,4 +1,4 @@
-package vista;
+package vistas;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
@@ -11,6 +11,10 @@ public class PanelInformacionCamarero extends JPanel {
 	private JLabel etiquetaApellidos;
 	private JLabel etiquetaId;
 	private JLabel etiquetaPermisos;
+	private JLabel campoNombre;
+	private JLabel campoApellidos;
+	private JLabel campoId;
+	private JLabel campoPermisos;
 	
 	// Constructor
 	public PanelInformacionCamarero(){
@@ -19,14 +23,24 @@ public class PanelInformacionCamarero extends JPanel {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 	}
 	
+	// Método iniciarGUI()
 	private void iniciarGUI(){
 		
-		// Labels
+		// Instanciación de los omponenetes del panel 
 		etiquetaNombre = new JLabel("Nombre: ");
 		etiquetaApellidos = new JLabel("Apellidos: ");
 		etiquetaId = new JLabel("Id: ");
 		etiquetaPermisos = new JLabel("Permisos: ");
 		
+		/*
+		// Se introducen los valores del usuario
+		campoNombre.setText(DialogLogin.getEmpleado().getNombre());
+		campoApellidos.setText(DialogLogin.getEmpleado().getApellidos());
+		campoId.setText(String.valueOf(DialogLogin.getEmpleado().getIdEmpleado()));
+		campoPermisos.setText(String.valueOf(DialogLogin.getEmpleado().isPermisos()));
+		*/
+		
+		// Se añaden los componentes al panel
 		add(etiquetaNombre);
 		add(etiquetaApellidos);
 		add(etiquetaId);

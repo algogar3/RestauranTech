@@ -1,4 +1,4 @@
-package vista;
+package vistas;
 
 import java.awt.Dimension;
 
@@ -11,7 +11,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
-import vista.PanelPad.OnBotonPulsado;
+import vistas.PanelPad.OnBotonPulsado;
 
 public class DialogAnyadirProductos extends JOptionPane implements OnBotonPulsado {
 	
@@ -29,11 +29,11 @@ public class DialogAnyadirProductos extends JOptionPane implements OnBotonPulsad
 	private JTextField textFieldCantidad;
 	
 	// Cosntructor
-	public DialogAnyadirProductos(){
-		iniciarPaneles();
+	public DialogAnyadirProductos(int idBotonMesa){
+		iniciarPaneles(idBotonMesa);
 	}
 	
-	private void iniciarPaneles(){
+	private void iniciarPaneles(int idBotonMesa){
 		
 		// Instanciamos los paneles contenidos dentro del tabbedpane
 		panelComida = new JScrollPane();
@@ -81,7 +81,7 @@ public class DialogAnyadirProductos extends JOptionPane implements OnBotonPulsad
 		panelContenedorGlobal.add(panelContenedorDerecho);
 		
 		// Mostral panel mediante un Dialog
-		showConfirmDialog(this, panelContenedorGlobal, "Introduce productos", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+		showConfirmDialog(this, panelContenedorGlobal, "Introduce productos para la mesa " + idBotonMesa, JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 	}
 
 	@Override

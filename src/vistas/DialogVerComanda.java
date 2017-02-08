@@ -1,4 +1,4 @@
-package vista;
+package vistas;
 
 import java.awt.Dimension;
 
@@ -13,7 +13,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import vista.PanelPad.OnBotonPulsado;
+import vistas.PanelPad.OnBotonPulsado;
 
 public class DialogVerComanda extends JOptionPane implements OnBotonPulsado{
 	
@@ -30,12 +30,12 @@ public class DialogVerComanda extends JOptionPane implements OnBotonPulsado{
 	private JLabel cambio;
 	
 	// Constructor
-	public DialogVerComanda(){
-		iniciarGUI();
+	public DialogVerComanda(int idBotonMesa){
+		iniciarGUI(idBotonMesa);
 	}
 	
 	// Método iniciarGUI
-	private void iniciarGUI(){
+	private void iniciarGUI(int idBotonMesa){
 		
 		// Panel verComanda
 		panelVerComanda = new JScrollPane();
@@ -78,7 +78,7 @@ public class DialogVerComanda extends JOptionPane implements OnBotonPulsado{
 		panelContenedorGlobal.add(panelPad);
 		
 		// Diálogo de confirmación
-		showConfirmDialog(this, panelContenedorGlobal, "Comanda de la mesa", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+		showConfirmDialog(this, panelContenedorGlobal, "Comanda de la mesa " + idBotonMesa, JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 	}
 
 	@Override

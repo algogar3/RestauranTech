@@ -1,4 +1,4 @@
-package vista;
+package vistas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -38,18 +38,15 @@ public class BotonMesa extends JButton implements ActionListener{
 		addActionListener(this);
 	}
 
-	
+	// Desarrollo de los métodos de la interfaz ActionPerformed
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		//new DialogOpcionMesa();
-		//new DialogAbrirMesa();
-		new DialogAnyadirProductos();
-		//new DialogVerComanda();
+		// Se captura el objeto (BotonMesa) que dió lugar al evento
+		BotonMesa boton = (BotonMesa) e.getSource();
+		// Se recoge el id de la mesa, que viene dada como atriburo del objeto BotonMesa
+		int idBotonMesa = boton.getIdBotonMesa();
+		// Se muestra un menú con las posibles opciones
+		new DialogOpcionMesa(idBotonMesa);
 	}
-	
-	
-	
-	
-
 }
