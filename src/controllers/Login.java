@@ -13,11 +13,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import org.hibernate.Session;
 import models.Empleado;
+import vistas.PanelPad.OnBotonPulsado;
 
 public class Login {
 	
 	// Variables
 	private static boolean empleadoEncontrado;
+	private static OnLogeo escuchador;
 	
 	// Método comprobarLogin()
 	public static Empleado comprobarLogin(Session session, String password){
@@ -31,12 +33,23 @@ public class Login {
 			if(String.valueOf(empleado.getPasswordEmpleado()).equals(password)){
 				// Se ha encontrado al usuario
 				empleadoEncontrado = true;
-				System.out.println("coincidencia");
+				escuchador.usuarioLogeado(empleado);
+				System.out.println(empleado.getNombre() + " " + empleado.getApellidos() + " se ha logeado correctamente");
 				return empleado;
 			}
 		}
 		// Si se recorren todos los empleados y no se han encontrado coincidencias, se devuelve null
-		System.out.println("NO coincidencia");
+		System.out.println("Intento de logeo fallido");
 		return null;
+	}
+	
+	// Interfaz OnLogeo
+	public interface OnLogeo{
+		public void usuarioLogeado(Empleado empleado);
+	}
+	
+	// Método de suscripción a la interfaz
+	public void setOnLogeo(OnLogeo escuchador){
+		this.escuchador = escuchador;
 	}
 }

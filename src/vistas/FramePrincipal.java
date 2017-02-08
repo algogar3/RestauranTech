@@ -57,7 +57,6 @@ public class FramePrincipal extends JFrame {
 		
 		// Llamada al método iniciarGUI()
 		iniciarGUI();
-
 	}
 	
 	public static void main(String[] args){

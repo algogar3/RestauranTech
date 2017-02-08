@@ -129,11 +129,4 @@ public class DialogOpcionMesa extends JOptionPane implements ActionListener {
 			radioButtonSeleccionado = KEY_ANAYDIR_PRODUCTO;
 		}
 	}
-	
-	
-	
-
-	
-	
-
 }

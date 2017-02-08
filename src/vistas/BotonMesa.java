@@ -43,15 +43,14 @@ public class BotonMesa extends JButton implements ActionListener{
 
 	// Desarrollo de los métodos de la interfaz ActionPerformed
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		// Al hacer click sobre una mesa, se pide al usuario que haga login
-		boolean loginCorrecto = false;
-		
+	public void actionPerformed(ActionEvent e) {		
+		// Se recupera el empleado que ha hecho login
 		DialogLogin dialogLogin = new DialogLogin();
 		empleado = dialogLogin.getEmpleado();
 		
 		// Comprobación de login correcto
 		if(empleado != null){
+			// Login correcto. Se lanza el diálogo con las opciones de la mesa
 			// Se captura el objeto (BotonMesa) que dió lugar al evento
 			BotonMesa boton = (BotonMesa) e.getSource();
 			// Se recoge el id de la mesa, que viene dada como atriburo del objeto BotonMesa
@@ -60,7 +59,7 @@ public class BotonMesa extends JButton implements ActionListener{
 			new DialogOpcionMesa(idBotonMesa);
 		}
 		else{
-			// Mostrar mensaje de error
+			// Login incorrecto. Se muestra un diálogo con un mensaje de error
 			new DialogLoginIncorrecto();
 		}
 		

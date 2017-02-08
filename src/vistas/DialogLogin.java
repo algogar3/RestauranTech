@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
 import controllers.Login;
@@ -18,7 +19,7 @@ import vistas.PanelPad.OnBotonPulsado;
 public class DialogLogin extends JOptionPane implements OnBotonPulsado{
 	
 	// Variables
-	private JPanel panelContenedor;
+	private JSplitPane panelContenedor;
 	private JPanel panelLogin;
 	private PanelPad panelPad;
 	private JLabel textoPassword;
@@ -43,9 +44,6 @@ public class DialogLogin extends JOptionPane implements OnBotonPulsado{
 	
 	// Método iniciarGUI()
 	private void iniciarGUI(){
-		// Instanciación del panelContenedor
-		panelContenedor = new JPanel();
-		panelContenedor.setLayout(new BoxLayout(panelContenedor, BoxLayout.Y_AXIS));
 		
 		// Instanciación del panelLogin
 		panelLogin = new JPanel();
@@ -63,9 +61,8 @@ public class DialogLogin extends JOptionPane implements OnBotonPulsado{
 		panelPad = new PanelPad();
 		panelPad.setOnBotonPulsadoListener(this);
 		
-		// Introducción de los paneles creados en el panel contenedor
-		panelContenedor.add(panelLogin);
-		panelContenedor.add(panelPad);
+		// Instanciación del panelContenedor e introducción de su contenido
+		panelContenedor = new JSplitPane(JSplitPane.VERTICAL_SPLIT, panelLogin, panelPad);
 		
 		// Instanciación del diálogo
 		confirmacionUsuario = showConfirmDialog(this, panelContenedor, "Login", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
@@ -92,7 +89,6 @@ public class DialogLogin extends JOptionPane implements OnBotonPulsado{
 	private void prepararDatosLogin(){
 		if(confirmacionUsuario == JOptionPane.OK_OPTION){
 			password = campoPassword.getPassword();
-			System.out.println(password);
 		}
 	}
 

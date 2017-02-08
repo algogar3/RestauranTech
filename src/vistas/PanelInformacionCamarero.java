@@ -1,10 +1,16 @@
 package vistas;
 
-import javax.swing.BoxLayout;
+import java.awt.GridLayout;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import java.awt.FlowLayout;
 
-public class PanelInformacionCamarero extends JPanel {
+import controllers.Login;
+import controllers.Login.OnLogeo;
+import models.Empleado;
+
+public class PanelInformacionCamarero extends JPanel implements OnLogeo{
 	
 	// Variables
 	private JLabel etiquetaNombre;
@@ -15,12 +21,13 @@ public class PanelInformacionCamarero extends JPanel {
 	private JLabel campoApellidos;
 	private JLabel campoId;
 	private JLabel campoPermisos;
+	private Login log;
 	
 	// Constructor
 	public PanelInformacionCamarero(){
 		iniciarGUI();
 		this.setVisible(true);
-		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		setLayout(new GridLayout(4,4));
 	}
 	
 	// Método iniciarGUI()
@@ -30,23 +37,44 @@ public class PanelInformacionCamarero extends JPanel {
 		etiquetaNombre = new JLabel("Nombre: ");
 		etiquetaApellidos = new JLabel("Apellidos: ");
 		etiquetaId = new JLabel("Id: ");
-		etiquetaPermisos = new JLabel("Permisos: ");
+		etiquetaPermisos = new JLabel("Gerente: ");
 		
-		/*
-		// Se introducen los valores del usuario
-		campoNombre.setText(DialogLogin.getEmpleado().getNombre());
-		campoApellidos.setText(DialogLogin.getEmpleado().getApellidos());
-		campoId.setText(String.valueOf(DialogLogin.getEmpleado().getIdEmpleado()));
-		campoPermisos.setText(String.valueOf(DialogLogin.getEmpleado().isPermisos()));
-		*/
+		campoNombre = new JLabel("");
+		campoApellidos = new JLabel("");
+		campoId = new JLabel("");
+		campoPermisos = new JLabel("");
+		
+		// Formato de las etiquetas
+		etiquetaNombre.setFont(new java.awt.Font(Fuente.FUENTE_ARIAL, Fuente.ESTILO_NORMAL, Fuente.TAMANYO));
+		etiquetaApellidos.setFont(new java.awt.Font(Fuente.FUENTE_ARIAL, Fuente.ESTILO_NORMAL, Fuente.TAMANYO));
+		etiquetaId.setFont(new java.awt.Font(Fuente.FUENTE_ARIAL, Fuente.ESTILO_NORMAL, Fuente.TAMANYO));
+		etiquetaPermisos.setFont(new java.awt.Font(Fuente.FUENTE_ARIAL, Fuente.ESTILO_NORMAL, Fuente.TAMANYO));
+		campoNombre.setFont(new java.awt.Font(Fuente.FUENTE_ARIAL, Fuente.ESTILO_NORMAL, Fuente.TAMANYO));
+		campoApellidos.setFont(new java.awt.Font(Fuente.FUENTE_ARIAL, Fuente.ESTILO_NORMAL, Fuente.TAMANYO));
+		campoId.setFont(new java.awt.Font(Fuente.FUENTE_ARIAL, Fuente.ESTILO_NORMAL, Fuente.TAMANYO));
+		campoPermisos.setFont(new java.awt.Font(Fuente.FUENTE_ARIAL, Fuente.ESTILO_NORMAL, Fuente.TAMANYO));
+		
+		// Escuchador de la interfaz
+		log = new Login();
+		log.setOnLogeo(this);
 		
 		// Se añaden los componentes al panel
 		add(etiquetaNombre);
+		add(campoNombre);
 		add(etiquetaApellidos);
+		add(campoApellidos);
 		add(etiquetaId);
+		add(campoId);
 		add(etiquetaPermisos);
-		
+		add(campoPermisos);
 	}
 
-	
+	// Desarrollo de los métodos de la interfaz OnLogeo
+	@Override
+	public void usuarioLogeado(Empleado empleado) {
+		campoNombre.setText(empleado.getNombre());
+		campoApellidos.setText(empleado.getApellidos());
+		campoId.setText(String.valueOf(empleado.getIdEmpleado()));
+		campoPermisos.setText(String.valueOf(empleado.isPermisos()));
+	}
 }

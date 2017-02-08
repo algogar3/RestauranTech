@@ -44,42 +44,52 @@ public class PanelPad extends JPanel implements ActionListener {
 		
 		// Instanciación de los botones. Suscripción como escuchadores de la interfaz ActionListener
 		boton1 = new JButton("1");
+		boton1.setFont(new java.awt.Font(Fuente.FUENTE_ARIAL, Fuente.ESTILO_NORMAL, Fuente.TAMANYO_BTN_PAD));
 		boton1.addActionListener(this);
 		mapBotones.put(boton1, "boton1");
 		
 		boton2 = new JButton("2");
+		boton2.setFont(new java.awt.Font(Fuente.FUENTE_ARIAL, Fuente.ESTILO_NORMAL, Fuente.TAMANYO_BTN_PAD));
 		boton2.addActionListener(this);
 		mapBotones.put(boton2, "boton2");
 		
 		boton3 = new JButton("3");
+		boton3.setFont(new java.awt.Font(Fuente.FUENTE_ARIAL, Fuente.ESTILO_NORMAL, Fuente.TAMANYO_BTN_PAD));
 		boton3.addActionListener(this);
 		mapBotones.put(boton3, "boton3");
 		
 		boton4 = new JButton("4");
+		boton4.setFont(new java.awt.Font(Fuente.FUENTE_ARIAL, Fuente.ESTILO_NORMAL, Fuente.TAMANYO_BTN_PAD));
 		boton4.addActionListener(this);
 		mapBotones.put(boton4, "boton4");
 		
 		boton5 = new JButton("5");
+		boton5.setFont(new java.awt.Font(Fuente.FUENTE_ARIAL, Fuente.ESTILO_NORMAL, Fuente.TAMANYO_BTN_PAD));
 		boton5.addActionListener(this);
 		mapBotones.put(boton5, "boton5");
 		
 		boton6 = new JButton("6");
+		boton6.setFont(new java.awt.Font(Fuente.FUENTE_ARIAL, Fuente.ESTILO_NORMAL, Fuente.TAMANYO_BTN_PAD));
 		boton6.addActionListener(this);
 		mapBotones.put(boton6, "boton6");
 		
 		boton7 = new JButton("7");
+		boton7.setFont(new java.awt.Font(Fuente.FUENTE_ARIAL, Fuente.ESTILO_NORMAL, Fuente.TAMANYO_BTN_PAD));
 		boton7.addActionListener(this);
 		mapBotones.put(boton7, "boton7");
 		
 		boton8 = new JButton("8");
+		boton8.setFont(new java.awt.Font(Fuente.FUENTE_ARIAL, Fuente.ESTILO_NORMAL, Fuente.TAMANYO_BTN_PAD));
 		boton8.addActionListener(this);
 		mapBotones.put(boton8, "boton8");
 		
 		boton9 = new JButton("9");
+		boton9.setFont(new java.awt.Font(Fuente.FUENTE_ARIAL, Fuente.ESTILO_NORMAL, Fuente.TAMANYO_BTN_PAD));
 		boton9.addActionListener(this);
 		mapBotones.put(boton9, "boton9");
 		
 		boton0 = new JButton("0");
+		boton0.setFont(new java.awt.Font(Fuente.FUENTE_ARIAL, Fuente.ESTILO_NORMAL, Fuente.TAMANYO_BTN_PAD));
 		boton0.addActionListener(this);
 		mapBotones.put(boton0, "boton0");
 		
@@ -118,50 +128,50 @@ public class PanelPad extends JPanel implements ActionListener {
 		switch(mapBotones.get(e.getSource())){
 		case "boton1": 
 			actualizarBuffer("1");
-			escuchador.botonPulsado(getBuffer());
+			escuchador.botonPulsado(buffer);
 			break;
 		case "boton2": 
 			actualizarBuffer("2");
-			escuchador.botonPulsado(getBuffer());
+			escuchador.botonPulsado(buffer);
 			break;
 		case "boton3": 
 			actualizarBuffer("3");
-			escuchador.botonPulsado(getBuffer());
+			escuchador.botonPulsado(buffer);
 			break;
 		case "boton4": 
 			actualizarBuffer("4");
-			escuchador.botonPulsado(getBuffer());
+			escuchador.botonPulsado(buffer);
 			break;
 		case "boton5": 
 			actualizarBuffer("5");
-			escuchador.botonPulsado(getBuffer());
+			escuchador.botonPulsado(buffer);
 			break;
 		case "boton6": 
 			actualizarBuffer("6");
-			escuchador.botonPulsado(getBuffer());
+			escuchador.botonPulsado(buffer);
 			break;
 		case "boton7": 
 			actualizarBuffer("7");
-			escuchador.botonPulsado(getBuffer());
+			escuchador.botonPulsado(buffer);
 			break;
 		case "boton8": 
 			actualizarBuffer("8");
-			escuchador.botonPulsado(getBuffer());
+			escuchador.botonPulsado(buffer);
 			break;
 		case "boton9": 
 			actualizarBuffer("9");
-			escuchador.botonPulsado(getBuffer());
+			escuchador.botonPulsado(buffer);
 			break;
 		case "boton0": 
 			actualizarBuffer("0");
-			escuchador.botonPulsado(getBuffer());
+			escuchador.botonPulsado(buffer);
 			break;
 		case "botonAceptar":
 			// Código para el boton aceptar
 			break;
 		case "botonBorrar":
 			buffer="";
-			escuchador.botonPulsado(getBuffer());
+			escuchador.botonPulsado(buffer);
 		}
 		
 	}
@@ -180,17 +190,4 @@ public class PanelPad extends JPanel implements ActionListener {
 	public void setOnBotonPulsadoListener(OnBotonPulsado escuchador){
 		this.escuchador = escuchador;
 	}
-
-	// Getters and setters
-	public String getBuffer() {
-		return buffer;
-	}
-
-	public void setBuffer(String buffer) {
-		this.buffer = buffer;
-	}
-	
-	
-	
-
 }

@@ -11,7 +11,6 @@ public class DialogLoginIncorrecto extends JOptionPane {
 	
 	// Método iniciarGUI()
 	private void iniciarGUI(){
-		showConfirmDialog(this, "Id o constraseña incorrectos", "Error", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null);
+		showConfirmDialog(this, "Constraseña incorrecta!!", "Error", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null);
 	}
-
 }
