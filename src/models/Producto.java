@@ -1,5 +1,5 @@
 package models;
-// Generated 07-feb-2017 12:58:55 by Hibernate Tools 4.3.1.Final
+// Generated 08-feb-2017 18:06:27 by Hibernate Tools 4.3.1.Final
 
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -12,6 +12,7 @@ public class Producto implements java.io.Serializable {
 
 	private Integer idProducto;
 	private String denominacion;
+	private String tipoProducto;
 	private BigDecimal precio;
 	private String descripcion;
 	private Set comandas = new HashSet(0);
@@ -19,13 +20,15 @@ public class Producto implements java.io.Serializable {
 	public Producto() {
 	}
 
-	public Producto(String denominacion, BigDecimal precio) {
+	public Producto(String denominacion, String tipoProducto, BigDecimal precio) {
 		this.denominacion = denominacion;
+		this.tipoProducto = tipoProducto;
 		this.precio = precio;
 	}
 
-	public Producto(String denominacion, BigDecimal precio, String descripcion, Set comandas) {
+	public Producto(String denominacion, String tipoProducto, BigDecimal precio, String descripcion, Set comandas) {
 		this.denominacion = denominacion;
+		this.tipoProducto = tipoProducto;
 		this.precio = precio;
 		this.descripcion = descripcion;
 		this.comandas = comandas;
@@ -45,6 +48,14 @@ public class Producto implements java.io.Serializable {
 
 	public void setDenominacion(String denominacion) {
 		this.denominacion = denominacion;
+	}
+
+	public String getTipoProducto() {
+		return this.tipoProducto;
+	}
+
+	public void setTipoProducto(String tipoProducto) {
+		this.tipoProducto = tipoProducto;
 	}
 
 	public BigDecimal getPrecio() {

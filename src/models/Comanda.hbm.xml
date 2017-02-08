@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 07-feb-2017 12:58:55 by Hibernate Tools 4.3.1.Final -->
+<!-- Generated 08-feb-2017 18:06:27 by Hibernate Tools 4.3.1.Final -->
 <hibernate-mapping>
     <class name="models.Comanda" table="comanda" catalog="restaurantech" optimistic-lock="version">
         <id name="idComanda" type="java.lang.Integer">

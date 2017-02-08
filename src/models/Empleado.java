@@ -1,5 +1,5 @@
 package models;
-// Generated 07-feb-2017 12:58:55 by Hibernate Tools 4.3.1.Final
+// Generated 08-feb-2017 18:06:27 by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,7 +12,7 @@ public class Empleado implements java.io.Serializable {
 	private Integer idEmpleado;
 	private String nombre;
 	private String apellidos;
-	private String password;
+	private int passwordEmpleado;
 	private Integer telefono;
 	private String dni;
 	private boolean permisos;
@@ -21,19 +21,19 @@ public class Empleado implements java.io.Serializable {
 	public Empleado() {
 	}
 
-	public Empleado(String nombre, String apellidos, String password, String dni, boolean permisos) {
+	public Empleado(String nombre, String apellidos, int passwordEmpleado, String dni, boolean permisos) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
-		this.password = password;
+		this.passwordEmpleado = passwordEmpleado;
 		this.dni = dni;
 		this.permisos = permisos;
 	}
 
-	public Empleado(String nombre, String apellidos, String password, Integer telefono, String dni, boolean permisos,
-			Set servicios) {
+	public Empleado(String nombre, String apellidos, int passwordEmpleado, Integer telefono, String dni,
+			boolean permisos, Set servicios) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
-		this.password = password;
+		this.passwordEmpleado = passwordEmpleado;
 		this.telefono = telefono;
 		this.dni = dni;
 		this.permisos = permisos;
@@ -64,12 +64,12 @@ public class Empleado implements java.io.Serializable {
 		this.apellidos = apellidos;
 	}
 
-	public String getPassword() {
-		return this.password;
+	public int getPasswordEmpleado() {
+		return this.passwordEmpleado;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPasswordEmpleado(int passwordEmpleado) {
+		this.passwordEmpleado = passwordEmpleado;
 	}
 
 	public Integer getTelefono() {

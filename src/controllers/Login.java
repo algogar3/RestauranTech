@@ -28,7 +28,7 @@ public class Login {
 		while(iter.hasNext() && empleadoEncontrado == false){
 			Empleado empleado = (Empleado) iter.next();
 			// Comprobación de los datos para cada empleado
-			if(String.valueOf(empleado.getIdEmpleado()).equals(id) && empleado.getPassword().equals(password)){
+			if(String.valueOf(empleado.getIdEmpleado()).equals(id) && String.valueOf(empleado.getPasswordEmpleado()).equals(password)){
 				// Se ha encontrado al usuario
 				empleadoEncontrado = true;
 				System.out.println("coincidencia");
