@@ -57,9 +57,7 @@ public class FramePrincipal extends JFrame {
 		
 		// Llamada al método iniciarGUI()
 		iniciarGUI();
-		
-		// Se llama al diálogo de login
-		new DialogLogin();
+
 	}
 	
 	public static void main(String[] args){

@@ -20,7 +20,7 @@ public class Login {
 	private static boolean empleadoEncontrado;
 	
 	// Método comprobarLogin()
-	public static Empleado comprobarLogin(Session session, String id, String password){
+	public static Empleado comprobarLogin(Session session, String password){
 		// Inicialización de las variables
 		empleadoEncontrado = false;
 		// Se recuperan todos los empleados de la base de datos
@@ -28,7 +28,7 @@ public class Login {
 		while(iter.hasNext() && empleadoEncontrado == false){
 			Empleado empleado = (Empleado) iter.next();
 			// Comprobación de los datos para cada empleado
-			if(String.valueOf(empleado.getIdEmpleado()).equals(id) && String.valueOf(empleado.getPasswordEmpleado()).equals(password)){
+			if(String.valueOf(empleado.getPasswordEmpleado()).equals(password)){
 				// Se ha encontrado al usuario
 				empleadoEncontrado = true;
 				System.out.println("coincidencia");

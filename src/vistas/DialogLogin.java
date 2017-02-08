@@ -1,7 +1,10 @@
 package vistas;
 
 import java.awt.GridLayout;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -10,17 +13,17 @@ import javax.swing.JTextField;
 
 import controllers.Login;
 import models.Empleado;
+import vistas.PanelPad.OnBotonPulsado;
 
-public class DialogLogin extends JOptionPane{
+public class DialogLogin extends JOptionPane implements OnBotonPulsado{
 	
 	// Variables
-	private JPanel panel;
-	private JLabel textoId;
+	private JPanel panelContenedor;
+	private JPanel panelLogin;
+	private PanelPad panelPad;
 	private JLabel textoPassword;
-	private JTextField campoId;
 	private JPasswordField campoPassword;
-	private String id;
-	private char[] password;
+	private char[] password = {' '};
 	private int confirmacionUsuario;
 	private static Empleado empleado;
 	
@@ -40,30 +43,39 @@ public class DialogLogin extends JOptionPane{
 	
 	// Método iniciarGUI()
 	private void iniciarGUI(){
-		// Instanciación del panel
-		panel = new JPanel(new GridLayout(2,2));
+		// Instanciación del panelContenedor
+		panelContenedor = new JPanel();
+		panelContenedor.setLayout(new BoxLayout(panelContenedor, BoxLayout.Y_AXIS));
 		
-		// Declaración de los elementos del panel
-		textoId = new JLabel("ID usuario");
+		// Instanciación del panelLogin
+		panelLogin = new JPanel();
+		
+		// Declaración de los elementos del panelLogin
+
 		textoPassword = new JLabel("Password");
-		campoId = new JTextField(10); // ojo dimensiones del campo contraseña en la base de datos
 		campoPassword = new JPasswordField(10); // ojo dimensiones del campo contraseña en la base de datos
 		
-		// Se introducen los elementos en el panel
-		panel.add(textoId);
-		panel.add(campoId);
-		panel.add(textoPassword);
-		panel.add(campoPassword);
+		// Se introducen los elementos en el panelLogin
+		panelLogin.add(textoPassword);
+		panelLogin.add(campoPassword);
+		
+		// Instanciación del panelPad
+		panelPad = new PanelPad();
+		panelPad.setOnBotonPulsadoListener(this);
+		
+		// Introducción de los paneles creados en el panel contenedor
+		panelContenedor.add(panelLogin);
+		panelContenedor.add(panelPad);
 		
 		// Instanciación del diálogo
-		confirmacionUsuario = showConfirmDialog(this, panel, "Login", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE);
+		confirmacionUsuario = showConfirmDialog(this, panelContenedor, "Login", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
 		
 		// Llamada al método para preparar los datos de id y password
 		prepararDatosLogin();
 		
 		// Llamada al controlador para que compruebe los datos
 		// El controlador devuelve el empleado si existen coincidencias, o null en caso contrario
-		empleado = Login.comprobarLogin(FramePrincipal.session, id, String.valueOf(password));
+		empleado = Login.comprobarLogin(FramePrincipal.session, String.valueOf(password));
 		// Comprobación del objeto devuelto por el controlador
 		if(empleado != null){
 			// Se ha encontrado una coincidencia. El login es correcto
@@ -79,10 +91,15 @@ public class DialogLogin extends JOptionPane{
 	// Método prepararDatosLogin()
 	private void prepararDatosLogin(){
 		if(confirmacionUsuario == JOptionPane.OK_OPTION){
-			id = campoId.getText();
 			password = campoPassword.getPassword();
-			System.out.println(id);
 			System.out.println(password);
 		}
+	}
+
+	// Desarrollo de los métodos de la interfaz OnBotonPulsado
+	@Override
+	public void botonPulsado(String buffer) {
+		// TODO Auto-generated method stub
+		campoPassword.setText(buffer);
 	}
 }
