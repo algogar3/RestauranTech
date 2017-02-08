@@ -13,16 +13,16 @@ import controllers.EstadoMesa;
 
 public class DialogGerencia extends JOptionPane implements ActionListener{
 	// Constantes
-	public static final int KEY_MODIFICAR_EMPLEADO = 0;
+	public static final int KEY_CONSULTAR_MODIFICAR_EMPLEADO = 0;
 	public static final int KEY_ALTA_EMPLEADO = 1;
-	public static final int KEY_MODIFICAR_PRODUCTO = 2;
+	public static final int KEY_CONSULTAR_MODIFICAR_PRODUCTO = 2;
 	public static final int KEY_ALTA_PRODUCTO = 3;
 	
 	// Variables
 	private ButtonGroup buttonGroup;
-	private JRadioButton radioButtonModificarEmpleado;
+	private JRadioButton radioButtonConsultarModificarEmpleado;
 	private JRadioButton radioButtonAltaEmpleado;
-	private JRadioButton radioButtonModificarProducto;
+	private JRadioButton radioButtonConsultarModificarProducto;
 	private JRadioButton radioButtonAltaProducto;
 	private int accionUsuario;
 	private int radioButtonSeleccionado;
@@ -42,8 +42,9 @@ public class DialogGerencia extends JOptionPane implements ActionListener{
 			switch(radioButtonSeleccionado){
 			
 			case 0: 
-				// CASO SE SELECCIONA MODIFICAR EMPLEADO
-				// Se abre el dialog de modificacion de empleado
+				// CASO SE SELECCIONA CONSULTAR/MODIFICAR EMPLEADO
+				// Se abre el dialog de consulta/modificacion de empleado
+				new DialogConsultarModificarEmpleado();
 				break;
 			
 			case 1:
@@ -52,8 +53,8 @@ public class DialogGerencia extends JOptionPane implements ActionListener{
 				break;
 			
 			case 2:
-				// CASE SE SELECCIONA MODIFICAR PRODUCTO
-				// Se abre el dialog de modificacion de producto
+				// CASE SE SELECCIONA CONSULTAR/MODIFICAR PRODUCTO
+				// Se abre el dialog de consulta/modificacion de producto
 				break;
 				
 			case 3:
@@ -71,29 +72,29 @@ public class DialogGerencia extends JOptionPane implements ActionListener{
 		panelDialog.setLayout(new BoxLayout(panelDialog, BoxLayout.Y_AXIS));
 		
 		// Se instancian los radiobutton y se les asigna un escuchador
-		radioButtonModificarEmpleado = new JRadioButton("Modificar empleado", true);
-		radioButtonModificarEmpleado.addActionListener(this);
+		radioButtonConsultarModificarEmpleado = new JRadioButton("Consultar/Modificar empleado", true);
+		radioButtonConsultarModificarEmpleado.addActionListener(this);
 		
 		radioButtonAltaEmpleado = new JRadioButton("Dar de alta a un nuevo empleado", false);
 		radioButtonAltaEmpleado.addActionListener(this);
 		
-		radioButtonModificarProducto = new JRadioButton("Modificar producto", false);
-		radioButtonModificarProducto.addActionListener(this);
+		radioButtonConsultarModificarProducto = new JRadioButton("Consultar/Modificar producto", false);
+		radioButtonConsultarModificarProducto.addActionListener(this);
 		
 		radioButtonAltaProducto = new JRadioButton("Dar de alta un nuevo producto", false);
 		radioButtonAltaProducto.addActionListener(this);
 		
 		// Se añaden los radiobutton al buttongroup
 		buttonGroup = new ButtonGroup();
-		buttonGroup.add(radioButtonModificarEmpleado);
+		buttonGroup.add(radioButtonConsultarModificarEmpleado);
 		buttonGroup.add(radioButtonAltaEmpleado);
-		buttonGroup.add(radioButtonModificarProducto);
+		buttonGroup.add(radioButtonConsultarModificarProducto);
 		buttonGroup.add(radioButtonAltaProducto);
 		
 		// Se añaden los radiobutton al panel
-		panelDialog.add(radioButtonModificarEmpleado);
+		panelDialog.add(radioButtonConsultarModificarEmpleado);
 		panelDialog.add(radioButtonAltaEmpleado);
-		panelDialog.add(radioButtonModificarProducto);
+		panelDialog.add(radioButtonConsultarModificarProducto);
 		panelDialog.add(radioButtonAltaProducto);
 				
 		// Retorno del método
@@ -103,17 +104,17 @@ public class DialogGerencia extends JOptionPane implements ActionListener{
 	// Desarrollo de los métodos de la interfaz ActionPerformed
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == radioButtonModificarEmpleado){
+		if(e.getSource() == radioButtonConsultarModificarEmpleado){
 			// Caso se selecciona abrir mesa
-			radioButtonSeleccionado = KEY_MODIFICAR_EMPLEADO;
+			radioButtonSeleccionado = KEY_CONSULTAR_MODIFICAR_EMPLEADO;
 		}
 		else if(e.getSource() == radioButtonAltaEmpleado){
 			// Caso se selecciona ver comanda
 			radioButtonSeleccionado = KEY_ALTA_EMPLEADO;
 		}
-		else if(e.getSource() == radioButtonModificarProducto){
+		else if(e.getSource() == radioButtonConsultarModificarProducto){
 			// Caso se selecciona ver comanda
-			radioButtonSeleccionado = KEY_MODIFICAR_PRODUCTO;
+			radioButtonSeleccionado = KEY_CONSULTAR_MODIFICAR_PRODUCTO;
 		}
 		else{
 			// Caso se selecciona añadir producto
