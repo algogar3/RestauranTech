@@ -13,17 +13,13 @@ import controllers.EstadoMesa;
 
 public class DialogGerencia extends JOptionPane implements ActionListener{
 	// Constantes
-	public static final int KEY_CONSULTAR_MODIFICAR_EMPLEADO = 0;
-	public static final int KEY_ALTA_EMPLEADO = 1;
-	public static final int KEY_CONSULTAR_MODIFICAR_PRODUCTO = 2;
-	public static final int KEY_ALTA_PRODUCTO = 3;
+	public static final int KEY_GESTIONAR_EMPLEADO = 0;
+	public static final int KEY_GESTIONAR_PRODUCTO = 1;
 	
 	// Variables
 	private ButtonGroup buttonGroup;
-	private JRadioButton radioButtonConsultarModificarEmpleado;
-	private JRadioButton radioButtonAltaEmpleado;
-	private JRadioButton radioButtonConsultarModificarProducto;
-	private JRadioButton radioButtonAltaProducto;
+	private JRadioButton radioButtonGestionarEmpleado;
+	private JRadioButton radioButtonGestionarProducto;
 	private int accionUsuario;
 	private int radioButtonSeleccionado;
 	
@@ -42,24 +38,14 @@ public class DialogGerencia extends JOptionPane implements ActionListener{
 			switch(radioButtonSeleccionado){
 			
 			case 0: 
-				// CASO SE SELECCIONA CONSULTAR/MODIFICAR EMPLEADO
-				// Se abre el dialog de consulta/modificacion de empleado
-				new DialogConsultarModificarEmpleado();
+				// CASO SE SELECCIONA GESTIONAR EMPLEADO
+				// Se abre el dialog de gestión de empleado
+				new DialogGestionarEmpleado();
 				break;
 			
 			case 1:
-				// CASO SE SELECCIONA DAR DE ALTA A UN NUEVO EMPLEADO
-				// Se abre el dialog de dar de alta a un nuevo empleado
-				break;
-			
-			case 2:
-				// CASE SE SELECCIONA CONSULTAR/MODIFICAR PRODUCTO
-				// Se abre el dialog de consulta/modificacion de producto
-				break;
-				
-			case 3:
-				// CASO SE SELECCIONA DAR DE ALTA UN NUEVO PRODUCTO
-				// Se abre el dialog de alta de un nuevo producto
+				// CASE SE SELECCIONA GESTIONAR PRODUCTO
+				// Se abre el dialog de gestión de producto
 				break;
 			}
 		}
@@ -67,35 +53,25 @@ public class DialogGerencia extends JOptionPane implements ActionListener{
 	
 	// Método para elaborar el panel
 	private JPanel crearPanelDiaolg(){
-		// Panel que muestra las opciones de mesa con radiobuttons
+		// Panel que muestra las opciones del menú de gerencia con radiobuttons
 		JPanel panelDialog = new JPanel();
 		panelDialog.setLayout(new BoxLayout(panelDialog, BoxLayout.Y_AXIS));
 		
 		// Se instancian los radiobutton y se les asigna un escuchador
-		radioButtonConsultarModificarEmpleado = new JRadioButton("Consultar/Modificar empleado", true);
-		radioButtonConsultarModificarEmpleado.addActionListener(this);
+		radioButtonGestionarEmpleado = new JRadioButton("Gestión empleados", true);
+		radioButtonGestionarEmpleado.addActionListener(this);
 		
-		radioButtonAltaEmpleado = new JRadioButton("Dar de alta a un nuevo empleado", false);
-		radioButtonAltaEmpleado.addActionListener(this);
-		
-		radioButtonConsultarModificarProducto = new JRadioButton("Consultar/Modificar producto", false);
-		radioButtonConsultarModificarProducto.addActionListener(this);
-		
-		radioButtonAltaProducto = new JRadioButton("Dar de alta un nuevo producto", false);
-		radioButtonAltaProducto.addActionListener(this);
+		radioButtonGestionarProducto = new JRadioButton("Gestión productos", false);
+		radioButtonGestionarProducto.addActionListener(this);
 		
 		// Se añaden los radiobutton al buttongroup
 		buttonGroup = new ButtonGroup();
-		buttonGroup.add(radioButtonConsultarModificarEmpleado);
-		buttonGroup.add(radioButtonAltaEmpleado);
-		buttonGroup.add(radioButtonConsultarModificarProducto);
-		buttonGroup.add(radioButtonAltaProducto);
+		buttonGroup.add(radioButtonGestionarEmpleado);
+		buttonGroup.add(radioButtonGestionarProducto);
 		
 		// Se añaden los radiobutton al panel
-		panelDialog.add(radioButtonConsultarModificarEmpleado);
-		panelDialog.add(radioButtonAltaEmpleado);
-		panelDialog.add(radioButtonConsultarModificarProducto);
-		panelDialog.add(radioButtonAltaProducto);
+		panelDialog.add(radioButtonGestionarEmpleado);
+		panelDialog.add(radioButtonGestionarProducto);
 				
 		// Retorno del método
 		return panelDialog;
@@ -104,21 +80,13 @@ public class DialogGerencia extends JOptionPane implements ActionListener{
 	// Desarrollo de los métodos de la interfaz ActionPerformed
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == radioButtonConsultarModificarEmpleado){
-			// Caso se selecciona abrir mesa
-			radioButtonSeleccionado = KEY_CONSULTAR_MODIFICAR_EMPLEADO;
+		if(e.getSource() == radioButtonGestionarEmpleado){
+			// Caso se selecciona gestionar empleado
+			radioButtonSeleccionado = KEY_GESTIONAR_EMPLEADO;
 		}
-		else if(e.getSource() == radioButtonAltaEmpleado){
-			// Caso se selecciona ver comanda
-			radioButtonSeleccionado = KEY_ALTA_EMPLEADO;
-		}
-		else if(e.getSource() == radioButtonConsultarModificarProducto){
-			// Caso se selecciona ver comanda
-			radioButtonSeleccionado = KEY_CONSULTAR_MODIFICAR_PRODUCTO;
-		}
-		else{
-			// Caso se selecciona añadir producto
-			radioButtonSeleccionado = KEY_ALTA_PRODUCTO;
+		else {
+			// Caso se selecciona gestionar producto
+			radioButtonSeleccionado = KEY_GESTIONAR_PRODUCTO;
 		}
 	}
 }
