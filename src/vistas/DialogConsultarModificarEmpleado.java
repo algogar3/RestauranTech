@@ -90,7 +90,7 @@ public class DialogConsultarModificarEmpleado extends JOptionPane implements Cha
 		labelPassword = new JLabel("Password: ");
 		labelTelefono = new JLabel("Teléfono: ");
 		labelDNI = new JLabel("DNI: ");
-		labelPermisos = new JLabel("Permisos gerencia:");
+		labelPermisos = new JLabel("Permisos: ");
 		labelPermisos.setToolTipText("Gerencia: 1, Personal: 0");
 		
 		campoNombre = new JTextField(10);
@@ -183,16 +183,24 @@ public class DialogConsultarModificarEmpleado extends JOptionPane implements Cha
 	public void itemStateChanged(ItemEvent e) {
 		if(e.getSource() == empleadosDisponibles){
 			// Se captura el índice del elemento seleccionado del JComboBox
-			int i = empleadosDisponibles.getSelectedIndex();
+			int indice = empleadosDisponibles.getSelectedIndex();
 			// Se rellena la información del empleado seleccionado
-			campoNombre.setText(listaEmpleados.get(i).getNombre());
-			campoApellidos.setText(listaEmpleados.get(i).getApellidos());
-			campoPassword.setText(String.valueOf(listaEmpleados.get(i).getPasswordEmpleado()));
-			campoTelefono.setText(String.valueOf(listaEmpleados.get(i).getTelefono()));
-			campoDNI.setText(listaEmpleados.get(i).getDni());
-			//campoPermisos.setSelectedIndex(listaEmpleados.get(i).isPermisos());
+			campoNombre.setText(listaEmpleados.get(indice).getNombre());
+			campoApellidos.setText(listaEmpleados.get(indice).getApellidos());
+			campoPassword.setText(String.valueOf(listaEmpleados.get(indice).getPasswordEmpleado()));
+			campoTelefono.setText(String.valueOf(listaEmpleados.get(indice).getTelefono()));
+			campoDNI.setText(listaEmpleados.get(indice).getDni());
+			// Para modificar el JComboBox, hay que transformar un boolean a entero
+			int indicePermisos;
+			if(listaEmpleados.get(indice).isPermisos()){
+				// El empleado tiene permisos de gerencia
+				indicePermisos = 1;
+			}
+			else{
+				// El empleado no tiene permisos de gerencia
+				indicePermisos = 0;
+			}
+			campoPermisos.setSelectedIndex(indicePermisos);
 		}
-		
 	}
-
 }
