@@ -36,7 +36,7 @@ public class ControladorInsertarActualizarEmpleados {
 			empleado.setPermisos(empleadoTemporal.isPermisos());
 			
 			// Actualización del empleado
-			session.persist(empleado);
+			session.update(empleado);
 		}
 		
 		// Persistencia de los datos

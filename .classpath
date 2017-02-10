@@ -2,6 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="C:/Users/algog/OneDrive/Documents/2DAM/WorkspaceAD/RestauranTech/Librerias/mysql-connector-java-5.1.18-bin.jar"/>
 	<classpathentry kind="lib" path="C:/Users/algog/OneDrive/Documents/2DAM/WorkspaceAD/RestauranTech/Librerias/hibernatejar/hibernatejar/antlr-2.7.6.jar"/>
 	<classpathentry kind="lib" path="C:/Users/algog/OneDrive/Documents/2DAM/WorkspaceAD/RestauranTech/Librerias/hibernatejar/hibernatejar/asm.jar"/>
 	<classpathentry kind="lib" path="C:/Users/algog/OneDrive/Documents/2DAM/WorkspaceAD/RestauranTech/Librerias/hibernatejar/hibernatejar/asm-attrs.jar"/>
@@ -22,6 +23,5 @@
 	<classpathentry kind="lib" path="C:/Users/algog/OneDrive/Documents/2DAM/WorkspaceAD/RestauranTech/Librerias/hibernatejar/hibernatejar/slf4j-1.6.1.zip"/>
 	<classpathentry kind="lib" path="C:/Users/algog/OneDrive/Documents/2DAM/WorkspaceAD/RestauranTech/Librerias/hibernatejar/hibernatejar/slf4j-simple-1.6.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/algog/OneDrive/Documents/2DAM/WorkspaceAD/RestauranTech/Librerias/hibernatejar/hibernatejar/xerces-2.6.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/algog/OneDrive/Documents/2DAM/WorkspaceAD/RestauranTech/Librerias/mysql-connector-java-5.1.18-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

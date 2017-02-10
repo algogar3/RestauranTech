@@ -34,7 +34,7 @@ public class DialogGestionarEmpleado extends JOptionPane implements ChangeListen
 	private JPanel panelComboBox;
 	private JPanel panelCampos;
 	private JPanel panelEditarEmpleado;
-	private JPanel panelCrearEmpleado;
+	private JPanel panelAccionesDisponibles;
 	private JComboBox empleadosDisponibles;
 	private Empleado[] arrayEmpleados;
 	private String[] arrayInfoEmpleados;
@@ -58,7 +58,7 @@ public class DialogGestionarEmpleado extends JOptionPane implements ChangeListen
 	private JButton botonConsultarEditarEmpleado;
 	private boolean permisosEdicion = false;
 	private int confirmacionUsuario;
-	private Empleado empleadoTemporal; 
+	private Empleado empleadoTemporal = new Empleado(); 
 	private boolean creandoEmpleado = false;
 	
 	// Constructor
@@ -105,12 +105,15 @@ public class DialogGestionarEmpleado extends JOptionPane implements ChangeListen
 		labelPermisos = new JLabel("Permisos: ");
 		labelPermisos.setToolTipText("Gerencia: 1, Personal: 0");
 		
-		campoNombre = new JTextField(10);
-		campoApellidos = new JTextField(10);
-		campoPassword = new JTextField(10);
-		campoTelefono =  new JTextField(10);
-		campoDNI = new JTextField(10);
+		// Al instanciar los JTextField de cada empleado, se asignan por defecto los valores de primer empleado, 
+		// ya que es éste el que aparece seleccionado por defecto en el JComboBox
+		campoNombre = new JTextField(arrayEmpleados[0].getNombre());
+		campoApellidos = new JTextField(arrayEmpleados[0].getApellidos());
+		campoPassword = new JTextField(String.valueOf(arrayEmpleados[0].getPasswordEmpleado()));
+		campoTelefono =  new JTextField(String.valueOf(arrayEmpleados[0].getTelefono()));
+		campoDNI = new JTextField(arrayEmpleados[0].getDni());
 		campoPermisos = new JComboBox<Integer>(arrayPermisos);
+		campoPermisos.setSelectedIndex(ControladorPermisos.obtenerTinyint(arrayEmpleados[0].isPermisos()));
 		
 		// Visibilidad inicial de los campos editables
 		campoNombre.setEditable(permisosEdicion);
@@ -152,8 +155,8 @@ public class DialogGestionarEmpleado extends JOptionPane implements ChangeListen
 		// Se añaden los elementos al panel
 		panelEditarEmpleado.add(checkBoxEdicion);;
 		
-		/*** Instanciación del panel panelCrearEmpleado ***/
-		panelCrearEmpleado = new JPanel();
+		/*** Instanciación del panel panelAccionesDisponibles ***/
+		panelAccionesDisponibles = new JPanel();
 		
 		// Instanciación de los elementos del panel
 		botonCrearEmpleado = new JButton("Nuevo empleado");
@@ -163,14 +166,14 @@ public class DialogGestionarEmpleado extends JOptionPane implements ChangeListen
 		botonConsultarEditarEmpleado.setEnabled(false);
 		
 		// Se añaden los elementos al panel
-		panelCrearEmpleado.add(botonCrearEmpleado);
-		panelCrearEmpleado.add(botonConsultarEditarEmpleado);
+		panelAccionesDisponibles.add(botonCrearEmpleado);
+		panelAccionesDisponibles.add(botonConsultarEditarEmpleado);
 		
 		/*** Se añaden los paneles anteriores al panelContenedor ***/
 		panelContenedor.add(panelComboBox);
 		panelContenedor.add(panelCampos);
 		panelContenedor.add(panelEditarEmpleado);
-		panelContenedor.add(panelCrearEmpleado);
+		panelContenedor.add(panelAccionesDisponibles);
 		
 		/*** Se muestra el diálogo ***/
 		confirmacionUsuario = showConfirmDialog(this, panelContenedor, "Gestionar empleados", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null);
@@ -189,7 +192,7 @@ public class DialogGestionarEmpleado extends JOptionPane implements ChangeListen
 				else{
 					// Se ha modificado un empleado existente
 					ControladorInsertarActualizarEmpleados.realizarTransaccionEmpleado(FramePrincipal.session, empleadoTemporal, creandoEmpleado,
-							empleadosDisponibles.getSelectedIndex());
+							empleadosDisponibles.getSelectedIndex() + 1);
 				}
 			}
 		}
@@ -209,10 +212,7 @@ public class DialogGestionarEmpleado extends JOptionPane implements ChangeListen
 			campoPassword.setEditable(permisosEdicion);
 			campoTelefono.setEditable(permisosEdicion);
 			campoDNI.setEditable(permisosEdicion);
-			campoPermisos.setEnabled(permisosEdicion);
-			
-			// Se prepara un objeto empleado para guardar los cambios
-			empleadoTemporal = new Empleado();			
+			campoPermisos.setEnabled(permisosEdicion);	
 		}
 		else{
 			// CheckBox NO seleccionado. No se permite la edición
@@ -284,6 +284,9 @@ public class DialogGestionarEmpleado extends JOptionPane implements ChangeListen
 			
 			// Variable de control
 			creandoEmpleado = false;
+			
+			// Se prepara un objeto empleado para guardar los cambios
+			empleadoTemporal = new Empleado();
 		}
 	}
 
@@ -314,7 +317,6 @@ public class DialogGestionarEmpleado extends JOptionPane implements ChangeListen
 				if(!campoPassword.getText().isEmpty() && !campoTelefono.getText().isEmpty()){
 					empleadoTemporal.setPasswordEmpleado(Integer.valueOf(campoPassword.getText().toString()));
 					empleadoTemporal.setTelefono(Integer.valueOf(campoTelefono.getText().toString()));
-					empleadoTemporal.setPermisos(ControladorPermisos.obtenerBooleano(campoPermisos.getSelectedIndex()));
 				}
 				empleadoTemporal.setDni(campoDNI.getText());
 				empleadoTemporal.setPermisos(ControladorPermisos.obtenerBooleano(campoPermisos.getSelectedIndex()));
@@ -342,7 +344,6 @@ public class DialogGestionarEmpleado extends JOptionPane implements ChangeListen
 			if(!campoPassword.getText().isEmpty() && !campoTelefono.getText().isEmpty()){
 				empleadoTemporal.setPasswordEmpleado(Integer.valueOf(campoPassword.getText().toString()));
 				empleadoTemporal.setTelefono(Integer.valueOf(campoTelefono.getText().toString()));
-				empleadoTemporal.setPermisos(ControladorPermisos.obtenerBooleano(campoPermisos.getSelectedIndex()));
 			}
 			empleadoTemporal.setDni(campoDNI.getText());
 			empleadoTemporal.setPermisos(ControladorPermisos.obtenerBooleano(campoPermisos.getSelectedIndex()));
