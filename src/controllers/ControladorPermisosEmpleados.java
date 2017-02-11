@@ -8,7 +8,7 @@
 
 package controllers;
 
-public class ControladorPermisos {
+public class ControladorPermisosEmpleados {
 	
 	// Constantes
 	private static final int KEY_TINYINT_FALSE = 0;

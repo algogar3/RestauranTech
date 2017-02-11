@@ -46,6 +46,7 @@ public class DialogGerencia extends JOptionPane implements ActionListener{
 			case 1:
 				// CASE SE SELECCIONA GESTIONAR PRODUCTO
 				// Se abre el dialog de gestión de producto
+				new DialogGestionarProducto();
 				break;
 			}
 		}

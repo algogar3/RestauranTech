@@ -24,7 +24,7 @@ import javax.swing.event.DocumentListener;
 
 import controllers.ControladorInsertarActualizarEmpleados;
 import controllers.ControladorJComboBoxEmpleados;
-import controllers.ControladorPermisos;
+import controllers.ControladorPermisosEmpleados;
 import models.Empleado;
 
 public class DialogGestionarEmpleado extends JOptionPane implements ChangeListener, ActionListener, ItemListener, DocumentListener{
@@ -113,7 +113,7 @@ public class DialogGestionarEmpleado extends JOptionPane implements ChangeListen
 		campoTelefono =  new JTextField(String.valueOf(arrayEmpleados[0].getTelefono()));
 		campoDNI = new JTextField(arrayEmpleados[0].getDni());
 		campoPermisos = new JComboBox<Integer>(arrayPermisos);
-		campoPermisos.setSelectedIndex(ControladorPermisos.obtenerTinyint(arrayEmpleados[0].isPermisos()));
+		campoPermisos.setSelectedIndex(ControladorPermisosEmpleados.obtenerTinyint(arrayEmpleados[0].isPermisos()));
 		
 		// Visibilidad inicial de los campos editables
 		campoNombre.setEditable(permisosEdicion);
@@ -303,7 +303,7 @@ public class DialogGestionarEmpleado extends JOptionPane implements ChangeListen
 			campoPassword.setText(String.valueOf(listaEmpleados.get(indice).getPasswordEmpleado()));
 			campoTelefono.setText(String.valueOf(listaEmpleados.get(indice).getTelefono()));
 			campoDNI.setText(listaEmpleados.get(indice).getDni());
-			campoPermisos.setSelectedIndex(ControladorPermisos.obtenerTinyint(listaEmpleados.get(indice).isPermisos()));
+			campoPermisos.setSelectedIndex(ControladorPermisosEmpleados.obtenerTinyint(listaEmpleados.get(indice).isPermisos()));
 		}
 		
 		// Lista desplegable de permisos
@@ -319,7 +319,7 @@ public class DialogGestionarEmpleado extends JOptionPane implements ChangeListen
 					empleadoTemporal.setTelefono(Integer.valueOf(campoTelefono.getText().toString()));
 				}
 				empleadoTemporal.setDni(campoDNI.getText());
-				empleadoTemporal.setPermisos(ControladorPermisos.obtenerBooleano(campoPermisos.getSelectedIndex()));
+				empleadoTemporal.setPermisos(ControladorPermisosEmpleados.obtenerBooleano(campoPermisos.getSelectedIndex()));
 				System.out.println("Empleado:");
 				System.out.println(empleadoTemporal.isPermisos());
 			}
@@ -346,7 +346,7 @@ public class DialogGestionarEmpleado extends JOptionPane implements ChangeListen
 				empleadoTemporal.setTelefono(Integer.valueOf(campoTelefono.getText().toString()));
 			}
 			empleadoTemporal.setDni(campoDNI.getText());
-			empleadoTemporal.setPermisos(ControladorPermisos.obtenerBooleano(campoPermisos.getSelectedIndex()));
+			empleadoTemporal.setPermisos(ControladorPermisosEmpleados.obtenerBooleano(campoPermisos.getSelectedIndex()));
 			
 			System.out.println("Empleado:");
 			System.out.println(empleadoTemporal.getNombre() + " " + empleadoTemporal.getApellidos() + " " + empleadoTemporal.getPasswordEmpleado() + 
@@ -366,7 +366,7 @@ public class DialogGestionarEmpleado extends JOptionPane implements ChangeListen
 				empleadoTemporal.setTelefono(Integer.valueOf(campoTelefono.getText().toString()));
 			}
 			empleadoTemporal.setDni(campoDNI.getText());
-			empleadoTemporal.setPermisos(ControladorPermisos.obtenerBooleano(campoPermisos.getSelectedIndex()));
+			empleadoTemporal.setPermisos(ControladorPermisosEmpleados.obtenerBooleano(campoPermisos.getSelectedIndex()));
 			
 			System.out.println("Empleado:");
 			System.out.println(empleadoTemporal.getNombre() + " " + empleadoTemporal.getApellidos() + " " + empleadoTemporal.getPasswordEmpleado() + 
