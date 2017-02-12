@@ -67,6 +67,12 @@ public class PanelInformacionCamarero extends JPanel implements OnLogeo{
 		add(campoId);
 		add(etiquetaPermisos);
 		add(campoPermisos);
+		
+		etiquetaNombre.setHorizontalAlignment(JLabel.CENTER);
+		etiquetaApellidos.setHorizontalAlignment(JLabel.CENTER);
+		etiquetaApellidos.setHorizontalAlignment(JLabel.CENTER);
+		etiquetaId.setHorizontalAlignment(JLabel.CENTER);
+		etiquetaPermisos.setHorizontalAlignment(JLabel.CENTER);
 	}
 
 	// Desarrollo de los métodos de la interfaz OnLogeo
@@ -75,6 +81,12 @@ public class PanelInformacionCamarero extends JPanel implements OnLogeo{
 		campoNombre.setText(empleado.getNombre());
 		campoApellidos.setText(empleado.getApellidos());
 		campoId.setText(String.valueOf(empleado.getIdEmpleado()));
-		campoPermisos.setText(String.valueOf(empleado.isPermisos()));
+		
+		if(empleado.isPermisos()){
+			campoPermisos.setText("Sí");
+		} else {
+			campoPermisos.setText("No");
+		}
+		
 	}
 }
