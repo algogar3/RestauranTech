@@ -45,7 +45,6 @@ public class FramePrincipal extends JFrame {
 		
 		// Panel base que contiene otros 3 paneles
 		JSplitPane splitPaneDerecho = new JSplitPane(JSplitPane.VERTICAL_SPLIT, panelLogo, panelInfoCamarero);
-		//splitPaneDerecho.setResizeWeight(0.5);
 		splitPaneDerecho.setEnabled(false);
 		
 		// Panel base que contiene otros 3 paneles
