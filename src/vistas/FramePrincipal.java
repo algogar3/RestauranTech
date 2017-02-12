@@ -21,6 +21,15 @@ public class FramePrincipal extends JFrame {
 	public static SessionFactory sessionFactory;
 	public static Session session;
 	private ImageIcon icono;
+	
+	// Constructor
+		public FramePrincipal(){
+			// Título de la ventana
+			super("RESTAURANTECH");
+			
+			// Llamada al método iniciarGUI()
+			iniciarGUI();
+		}
 
 	public void iniciarGUI(){
 		// MenuBar
@@ -56,14 +65,6 @@ public class FramePrincipal extends JFrame {
 		
 	}
 	
-	// Constructor
-	public FramePrincipal(){
-		// Título de la ventana
-		super("RESTAURANTECH");
-		
-		// Llamada al método iniciarGUI()
-		iniciarGUI();
-	}
 	
 	public static void main(String[] args){
 		sessionFactory = SessionFactoryUtil.getSessionFactory();

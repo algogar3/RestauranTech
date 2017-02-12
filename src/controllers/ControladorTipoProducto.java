@@ -19,9 +19,9 @@ public class ControladorTipoProducto {
 	public static String obtenerTipoProducto(int clave){
 		String tipoProducto = "";
 		switch(clave){
-		case KEY_COMIDA: tipoProducto = "comida"; break;	
-		case KEY_BEBIDA: tipoProducto = "bebida"; break;	
-		default: tipoProducto = "postre"; break;	
+			case KEY_COMIDA: tipoProducto = "comida"; break;	
+			case KEY_BEBIDA: tipoProducto = "bebida"; break;	
+			default: tipoProducto = "postre"; break;	
 		}
 		return tipoProducto;
 	}

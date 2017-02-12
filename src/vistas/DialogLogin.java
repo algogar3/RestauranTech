@@ -3,6 +3,8 @@ package vistas;
 import java.awt.GridLayout;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
@@ -16,7 +18,7 @@ import controllers.Login;
 import models.Empleado;
 import vistas.PanelPad.OnBotonPulsado;
 
-public class DialogLogin extends JOptionPane implements OnBotonPulsado{
+public class DialogLogin extends JOptionPane implements OnBotonPulsado, KeyListener{
 	
 	// Variables
 	private JSplitPane panelContenedor;
@@ -49,9 +51,10 @@ public class DialogLogin extends JOptionPane implements OnBotonPulsado{
 		panelLogin = new JPanel();
 		
 		// Declaración de los elementos del panelLogin
-
 		textoPassword = new JLabel("Password");
 		campoPassword = new JPasswordField(10); // ojo dimensiones del campo contraseña en la base de datos
+		campoPassword.addKeyListener(this);
+		
 		
 		// Se introducen los elementos en el panelLogin
 		panelLogin.add(textoPassword);
@@ -97,5 +100,26 @@ public class DialogLogin extends JOptionPane implements OnBotonPulsado{
 	public void botonPulsado(String buffer) {
 		// TODO Auto-generated method stub
 		campoPassword.setText(buffer);
+	}
+
+	@Override
+	public void keyPressed(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		char c = e.getKeyChar();
+	      if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+	         e.consume();  // ignore event
+	      }
 	}
 }
