@@ -1,5 +1,8 @@
 package vistas;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -8,7 +11,7 @@ import javax.swing.JTextField;
 
 import vistas.PanelPad.OnBotonPulsado;
 
-public class DialogAbrirMesa extends JOptionPane implements OnBotonPulsado{
+public class DialogAbrirMesa extends JOptionPane implements OnBotonPulsado, KeyListener{
 	
 	// Variables
 	private JSplitPane panelContenedor;
@@ -30,6 +33,7 @@ public class DialogAbrirMesa extends JOptionPane implements OnBotonPulsado{
 		// Instanciación del panel TextField e introducción de sus elementos
 		panelTextField = new JPanel();
 		textFieldNumeroPersonas = new JTextField(10);
+		textFieldNumeroPersonas.addKeyListener(this);
 		etiquetaCantidad = new JLabel("¿Número de comensales?");
 		panelTextField.add(etiquetaCantidad);
 		panelTextField.add(textFieldNumeroPersonas);
@@ -46,5 +50,26 @@ public class DialogAbrirMesa extends JOptionPane implements OnBotonPulsado{
 	public void botonPulsado(String buffer) {
 		// TODO Auto-generated method stub
 		textFieldNumeroPersonas.setText(buffer);
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		char c = e.getKeyChar();
+	      if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+	         e.consume();  // ignore event
+	      }
 	}
 }
