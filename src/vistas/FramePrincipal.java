@@ -3,6 +3,9 @@ package vistas;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
+
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -17,6 +20,7 @@ public class FramePrincipal extends JFrame {
 	// Variables
 	public static SessionFactory sessionFactory;
 	public static Session session;
+	private ImageIcon icono;
 
 	public void iniciarGUI(){
 		// MenuBar
@@ -35,13 +39,15 @@ public class FramePrincipal extends JFrame {
 		splitPaneDerecho.setResizeWeight(0.5);
 		splitPaneDerecho.setEnabled(false);
 		
-		
-		
 		// Panel base que contiene otros 3 paneles
 		JSplitPane splitPanelPrincipal = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panelIzquierdo, splitPaneDerecho);
 		splitPanelPrincipal.setEnabled(true);
 		splitPanelPrincipal.setResizeWeight(0.7);
 		getContentPane().add(splitPanelPrincipal);
+		
+		// Ponemos el icono a nuestro frame
+		icono = new ImageIcon("img/icon.png");
+		setIconImage(icono.getImage());
 		
 		// Configuraciones de la ventana
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
