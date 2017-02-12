@@ -32,6 +32,6 @@ public class PanelIzquierdo extends JPanel {
 			add(nuevoBotonMesa);
 		}
 		// Se le aplica un color de fondo al panel
-		setBackground(Color.BLUE);
+		setBackground(new Color(206, 227, 246));
 	}
 }
