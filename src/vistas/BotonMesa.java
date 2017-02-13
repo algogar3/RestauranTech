@@ -31,7 +31,7 @@ public class BotonMesa extends JButton implements ActionListener{
 	
 	// Método iniciarBoton
 	public void iniciarBotonMesa(){
-		setIcon(new ImageIcon("img/mesaPrueba.png"));
+		setIcon(new ImageIcon("img/mesaPrueba1.png"));
 		setOpaque(false);
 		setContentAreaFilled(false);
 		setBorderPainted(false);
