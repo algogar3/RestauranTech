@@ -1,5 +1,5 @@
 package models;
-// Generated 08-feb-2017 18:06:27 by Hibernate Tools 4.3.1.Final
+// Generated 13-feb-2017 19:59:16 by Hibernate Tools 4.3.1.Final
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -17,25 +17,30 @@ public class Servicio implements java.io.Serializable {
 	private int comensales;
 	private BigDecimal gasto;
 	private Date fecha;
+	private boolean servicioActivo;
 	private Set comandas = new HashSet(0);
 
 	public Servicio() {
 	}
 
-	public Servicio(Empleado empleado, Mesa mesa, int comensales, BigDecimal gasto, Date fecha) {
+	public Servicio(Empleado empleado, Mesa mesa, int comensales, BigDecimal gasto, Date fecha,
+			boolean servicioActivo) {
 		this.empleado = empleado;
 		this.mesa = mesa;
 		this.comensales = comensales;
 		this.gasto = gasto;
 		this.fecha = fecha;
+		this.servicioActivo = servicioActivo;
 	}
 
-	public Servicio(Empleado empleado, Mesa mesa, int comensales, BigDecimal gasto, Date fecha, Set comandas) {
+	public Servicio(Empleado empleado, Mesa mesa, int comensales, BigDecimal gasto, Date fecha, boolean servicioActivo,
+			Set comandas) {
 		this.empleado = empleado;
 		this.mesa = mesa;
 		this.comensales = comensales;
 		this.gasto = gasto;
 		this.fecha = fecha;
+		this.servicioActivo = servicioActivo;
 		this.comandas = comandas;
 	}
 
@@ -85,6 +90,14 @@ public class Servicio implements java.io.Serializable {
 
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
+	}
+
+	public boolean isServicioActivo() {
+		return this.servicioActivo;
+	}
+
+	public void setServicioActivo(boolean servicioActivo) {
+		this.servicioActivo = servicioActivo;
 	}
 
 	public Set getComandas() {
