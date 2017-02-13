@@ -1,8 +1,11 @@
 package vistas;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -15,7 +18,7 @@ import javax.swing.event.DocumentListener;
 
 import vistas.PanelPad.OnBotonPulsado;
 
-public class DialogVerComanda extends JOptionPane implements OnBotonPulsado{
+public class DialogVerComanda extends JOptionPane implements OnBotonPulsado, ActionListener{
 	
 	// Variables
 	private JScrollPane panelVerComanda;
@@ -28,6 +31,7 @@ public class DialogVerComanda extends JOptionPane implements OnBotonPulsado{
 	private JLabel textoCantidadEntregada;
 	private JTextField cantidadEntregada;
 	private JLabel cambio;
+	private JButton botonCobrar;
 	
 	// Constructor
 	public DialogVerComanda(int idBotonMesa){
@@ -53,9 +57,12 @@ public class DialogVerComanda extends JOptionPane implements OnBotonPulsado{
 		panelCantidadEntregada.setLayout(new BoxLayout(panelCantidadEntregada, BoxLayout.X_AXIS));
 		textoCantidadEntregada = new JLabel("Cantidad entregada: ");
 		cantidadEntregada = new JTextField(10);
+		botonCobrar = new JButton("Cobrar");
+		botonCobrar.addActionListener(this);
 		
 		panelCantidadEntregada.add(textoCantidadEntregada);
 		panelCantidadEntregada.add(cantidadEntregada);
+		panelCantidadEntregada.add(botonCobrar);
 		panelCobrar.add(panelCantidadEntregada);		
 		
 		cambio = new JLabel("Importe a devolver: 0,00€");
@@ -85,6 +92,14 @@ public class DialogVerComanda extends JOptionPane implements OnBotonPulsado{
 	public void botonPulsado(String buffer) {
 		// TODO Auto-generated method stub
 		cantidadEntregada.setText(buffer);
+	}
+
+	
+	// Escuchamos al boton cobrar
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	
