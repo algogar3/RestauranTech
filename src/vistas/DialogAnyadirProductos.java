@@ -3,6 +3,7 @@ package vistas;
 import java.awt.Dimension;
 
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -22,6 +23,7 @@ public class DialogAnyadirProductos extends JOptionPane implements OnBotonPulsad
 	private JTabbedPane tabbedPaneSuperior;
 	private JScrollPane scrollPaneInferior;
 	private JPanel panelCantidad;
+	private JButton botonAnyadirProducto;
 	private JScrollPane panelComida;
 	private JScrollPane panelBebida;
 	private JScrollPane panelPostre;
@@ -66,8 +68,10 @@ public class DialogAnyadirProductos extends JOptionPane implements OnBotonPulsad
 		panelCantidad = new JPanel();
 		etiquetaCantidad = new JLabel("Cantidad: ");
 		textFieldCantidad = new JTextField(10);
+		botonAnyadirProducto = new JButton("Añadir producto");
 		panelCantidad.add(etiquetaCantidad);
 		panelCantidad.add(textFieldCantidad);
+		panelCantidad.add(botonAnyadirProducto);
 		
 		// Instanciamos el panel contenedor derecho y añadimos los 2 paneles anteriores
 		panelContenedorDerecho = new JPanel();

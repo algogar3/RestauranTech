@@ -16,6 +16,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import controllers.ControladorCobrosYFacturacion;
 import vistas.PanelPad.OnBotonPulsado;
 
 public class DialogVerComanda extends JOptionPane implements OnBotonPulsado, ActionListener{
@@ -89,18 +90,22 @@ public class DialogVerComanda extends JOptionPane implements OnBotonPulsado, Act
 		showConfirmDialog(this, panelContenedorGlobal, "Comanda de la mesa " + idBotonMesa, JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 	}
 
+	// Desarrollo de los métodos de la interfaz OnBotonPulsado
 	@Override
 	public void botonPulsado(String buffer) {
-		// TODO Auto-generated method stub
+		// Actualización del JTextField
 		cantidadEntregada.setText(buffer);
 	}
 
 	
-	// Escuchamos al boton cobrar
+	// Desarrollo de los métodos de la interfaz ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		// Llamada al controlador de cobros para acutalizar el JTextField que muestra el cambio a devolver
+		//cambio.setText(ControladorCobrosYFacturacion.obtenerCambio(gastoMesa, cantidadEntregada.getText()));
 		
+		// Llamada al controlador de cobros para registrar la facturación y cerrar la mesa
+		//ControladorCobrosYFacturacion.insertarFacturacion(FramePrincipal.session, servicio);
 	}
 
 	

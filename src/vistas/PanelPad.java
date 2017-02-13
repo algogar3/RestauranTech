@@ -23,7 +23,7 @@ public class PanelPad extends JPanel implements ActionListener {
 	private JButton boton8;
 	private JButton boton9;
 	private JButton boton0;
-	private JButton botonAceptar;
+	private JButton botonDecimal;
 	private JButton botonBorrar;
 	private String buffer;
 	private OnBotonPulsado escuchador;
@@ -93,10 +93,10 @@ public class PanelPad extends JPanel implements ActionListener {
 		boton0.addActionListener(this);
 		mapBotones.put(boton0, "boton0");
 		
-		botonAceptar = new JButton();
-		botonAceptar.setIcon(new ImageIcon("img/tick102.png"));
-		botonAceptar.addActionListener(this);
-		mapBotones.put(botonAceptar, "botonAceptar");
+		botonDecimal = new JButton(".");
+		botonDecimal.setFont(new java.awt.Font(Fuente.FUENTE_ARIAL, Fuente.ESTILO_NORMAL, Fuente.TAMANYO_BTN_PAD));
+		botonDecimal.addActionListener(this);
+		mapBotones.put(botonDecimal, "botonDecimal");
 		
 		botonBorrar = new JButton();
 		botonBorrar.setIcon(new ImageIcon("img/back102.png"));
@@ -117,7 +117,7 @@ public class PanelPad extends JPanel implements ActionListener {
 		add(boton7);
 		add(boton8);
 		add(boton9);
-		add(botonAceptar);
+		add(botonDecimal);
 		add(boton0);
 		add(botonBorrar);
 	}
@@ -166,8 +166,9 @@ public class PanelPad extends JPanel implements ActionListener {
 			actualizarBuffer("0");
 			escuchador.botonPulsado(buffer);
 			break;
-		case "botonAceptar":
-			// Código para el boton aceptar
+		case "botonDecimal":
+			actualizarBuffer(".");
+			escuchador.botonPulsado(buffer);
 			break;
 		case "botonBorrar":
 			buffer="";
