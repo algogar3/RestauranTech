@@ -28,6 +28,7 @@ public class DialogAnyadirProductos extends JOptionPane implements OnBotonPulsad
 	private JLabel etiquetaCantidad;
 	private JTextField textFieldCantidad;
 	
+	
 	// Cosntructor
 	public DialogAnyadirProductos(int idBotonMesa){
 		iniciarPaneles(idBotonMesa);

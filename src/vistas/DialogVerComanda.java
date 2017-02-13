@@ -45,6 +45,7 @@ public class DialogVerComanda extends JOptionPane implements OnBotonPulsado, Act
 		panelVerComanda = new JScrollPane();
 		panelVerComanda.setPreferredSize(new Dimension(600,400));
 		
+		
 		// Panel cobrar
 		panelCobrar = new JPanel();
 		panelCobrar.setLayout(new BoxLayout(panelCobrar, BoxLayout.Y_AXIS));

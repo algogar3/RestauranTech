@@ -61,7 +61,6 @@ public class FramePrincipal extends JFrame {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
-		
 	}
 	
 	
