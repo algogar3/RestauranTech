@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 import controllers.EstadoMesa;
+import models.Empleado;
 
 public class DialogOpcionMesa extends JOptionPane implements ActionListener {
 	// Constantes
@@ -28,11 +29,11 @@ public class DialogOpcionMesa extends JOptionPane implements ActionListener {
 	private int idBotonMesa;
 	
 	// Constructor
-	public DialogOpcionMesa(int idBotonMesa){
-		iniciarDialog(idBotonMesa);
+	public DialogOpcionMesa(int idBotonMesa, Empleado empleado){
+		iniciarDialog(idBotonMesa, empleado);
 	}
 	
-	private void iniciarDialog(int idBotonMesa){
+	private void iniciarDialog(int idBotonMesa, Empleado empleado){
 		// Se crea el panel que se mostrará en el diálogo. Se hace uso del método iniciarDialog
 		JPanel panel = crearPanelDiaolg();
 		// Se crea el diálogo. Se recoge la opción elegida por el usuario
@@ -50,8 +51,7 @@ public class DialogOpcionMesa extends JOptionPane implements ActionListener {
 				}
 				else{
 					// La mesa está cerrada. Se continua con la operación
-					
-					new DialogAbrirMesa(idBotonMesa);
+					new DialogAbrirMesa(idBotonMesa, empleado);
 				}
 				break;
 			

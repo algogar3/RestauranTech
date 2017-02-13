@@ -76,16 +76,6 @@ public class DialogLogin extends JOptionPane implements OnBotonPulsado, KeyListe
 		// Llamada al controlador para que compruebe los datos
 		// El controlador devuelve el empleado si existen coincidencias, o null en caso contrario
 		empleado = Login.comprobarLogin(FramePrincipal.session, String.valueOf(password));
-		// Comprobación del objeto devuelto por el controlador
-		if(empleado != null){
-			// Se ha encontrado una coincidencia. El login es correcto
-			// Lanzar Dialog de bienvenida (hacer)
-			// ¿Interfaz para avisar a PanelInformacionCamarero de que se ha hecho login?
-		}
-		else{
-			// El login no es correcto, se lanza un diálogo con un mensaje de error (hacer)
-			// Se vuelve a lanzar el diáologo de login
-		}
 	}
 	
 	// Método prepararDatosLogin()

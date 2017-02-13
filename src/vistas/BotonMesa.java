@@ -56,7 +56,7 @@ public class BotonMesa extends JButton implements ActionListener{
 			// Se recoge el id de la mesa, que viene dada como atriburo del objeto BotonMesa
 			int idBotonMesa = boton.getIdBotonMesa();
 			// Se muestra un menú con las posibles opciones
-			new DialogOpcionMesa(idBotonMesa);
+			new DialogOpcionMesa(idBotonMesa, empleado);
 		}
 		else{
 			// Login incorrecto. Se muestra un diálogo con un mensaje de error

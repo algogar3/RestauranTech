@@ -2,6 +2,7 @@ package vistas;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Date;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -9,6 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
+import controllers.ControladorServicio;
+import models.Empleado;
 import vistas.PanelPad.OnBotonPulsado;
 
 public class DialogAbrirMesa extends JOptionPane implements OnBotonPulsado, KeyListener{
@@ -18,14 +21,15 @@ public class DialogAbrirMesa extends JOptionPane implements OnBotonPulsado, KeyL
 	private JPanel panelTextField;
 	private JTextField textFieldNumeroPersonas;
 	private JLabel etiquetaCantidad;
+	private int confirmacionUsuario;
 	
 	// Constructor
-	public DialogAbrirMesa(int idBotonMesa){
-		iniciarDialogAbrirMesa(idBotonMesa);
+	public DialogAbrirMesa(int idBotonMesa, Empleado empleado){
+		iniciarDialogAbrirMesa(idBotonMesa, empleado);
 	}
 	
 	// Mëtodo iniciarDialogAbrirMesa
-	private void iniciarDialogAbrirMesa(int idBotonMesa){
+	private void iniciarDialogAbrirMesa(int idBotonMesa, Empleado empleado){
 		// Instanciación del panel Pad y suscripción a la interfaz OnBotonPulsado
 		PanelPad panelPad = new PanelPad();
 		panelPad.setOnBotonPulsadoListener(this);
@@ -42,7 +46,14 @@ public class DialogAbrirMesa extends JOptionPane implements OnBotonPulsado, KeyL
 		panelContenedor = new JSplitPane(JSplitPane.VERTICAL_SPLIT, panelTextField, panelPad);
 		
 		// Instanciaciónd del diálogo
-		showConfirmDialog(this, panelContenedor, "Abrir mesa " + idBotonMesa, JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+		confirmacionUsuario = showConfirmDialog(this, panelContenedor, "Abrir mesa " + idBotonMesa, JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+		
+		/*** Acciones del botón ACEPTAR ***/
+		if (confirmacionUsuario == JOptionPane.OK_OPTION){
+			// Se llama al controlador de la tabla servicio para que haga la inserción en la base de datos
+			ControladorServicio.insertarNuevoServicio(FramePrincipal.session, idBotonMesa, empleado.getIdEmpleado(),
+					Integer.valueOf(textFieldNumeroPersonas.getText().toString()) , new Date());
+		}
 	}
 
 	// Desarrollo de los métodos de la interfaz OnBotonPulsado
