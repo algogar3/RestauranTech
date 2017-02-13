@@ -50,6 +50,7 @@ public class DialogOpcionMesa extends JOptionPane implements ActionListener {
 				}
 				else{
 					// La mesa está cerrada. Se continua con la operación
+					
 					new DialogAbrirMesa(idBotonMesa);
 				}
 				break;
