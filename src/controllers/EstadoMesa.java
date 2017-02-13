@@ -27,22 +27,19 @@ public class EstadoMesa {
 			return true;
 		}
 		else{
-			mesa.setOcupada(true);
-			session.update(mesa);
-			session.getTransaction().commit();
 			return false;
 		}	
 	}
 	
 	// Método dejarMesaLibre()
-	public static void dejarMesaLibre(Session session, int idBotonMesa){
+	public static void cambiarEstadoMesa(Session session, int idBotonMesa, boolean estado){
 		// Se recupera el objeto mesa cuya ID es igual a la que se pasa como 
 		// parámetro en la definición del método
 		Mesa mesa = (Mesa) session.get(Mesa.class, idBotonMesa);
 		session.beginTransaction();
 		
 		// Modificación del estado de la mesa
-		mesa.setOcupada(false);
+		mesa.setOcupada(estado);
 		
 		// Se guarda el nuevo estado de la mesa
 		session.update(mesa);

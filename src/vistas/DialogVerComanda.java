@@ -17,6 +17,8 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import controllers.ControladorCobrosYFacturacion;
+import controllers.ControladorServicioActivoMesa;
+import controllers.EstadoMesa;
 import vistas.PanelPad.OnBotonPulsado;
 
 public class DialogVerComanda extends JOptionPane implements OnBotonPulsado, ActionListener{
@@ -33,6 +35,7 @@ public class DialogVerComanda extends JOptionPane implements OnBotonPulsado, Act
 	private JTextField cantidadEntregada;
 	private JLabel cambio;
 	private JButton botonCobrar;
+	private int idMesa;
 	
 	// Constructor
 	public DialogVerComanda(int idBotonMesa){
@@ -41,6 +44,8 @@ public class DialogVerComanda extends JOptionPane implements OnBotonPulsado, Act
 	
 	// Método iniciarGUI
 	private void iniciarGUI(int idBotonMesa){
+		// Se recoge el valor de la variable idMesa
+		idMesa = idBotonMesa;
 		
 		// Panel verComanda
 		panelVerComanda = new JScrollPane();
@@ -52,7 +57,8 @@ public class DialogVerComanda extends JOptionPane implements OnBotonPulsado, Act
 		panelCobrar.setLayout(new BoxLayout(panelCobrar, BoxLayout.Y_AXIS));
 		
 		// Componentes del panel cobrar
-		importe = new JLabel("Total mesa: 0,00€");
+		importe = new JLabel("Total mesa: " + 
+		ControladorServicioActivoMesa.obtenerServicioActivoMesa(FramePrincipal.session, idMesa).getGasto().toString() + "€");
 		panelCobrar.add(importe);
 		// Subpanel cantidad entregada
 		panelCantidadEntregada = new JPanel();
@@ -101,15 +107,19 @@ public class DialogVerComanda extends JOptionPane implements OnBotonPulsado, Act
 	// Desarrollo de los métodos de la interfaz ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// Llamada al controlador de cobros para acutalizar el JTextField que muestra el cambio a devolver
-		//cambio.setText(ControladorCobrosYFacturacion.obtenerCambio(gastoMesa, cantidadEntregada.getText()));
-		
-		// Llamada al controlador de cobros para registrar la facturación y cerrar la mesa
-		//ControladorCobrosYFacturacion.insertarFacturacion(FramePrincipal.session, servicio);
+		if(e.getSource() == botonCobrar){
+			
+			// Llamada al controlador de cobros para acutalizar el JTextField que muestra el cambio a devolver
+			cambio.setText("Importe a devolver: " + ControladorCobrosYFacturacion.obtenerCambio(
+					ControladorServicioActivoMesa.obtenerServicioActivoMesa(FramePrincipal.session, idMesa),
+					Double.valueOf(cantidadEntregada.getText())) + "€");
+			
+			// Llamada al controlador de cobros para registrar la facturación y cambiar el estado del servicio
+			ControladorCobrosYFacturacion.insertarFacturacion(FramePrincipal.session, 
+					ControladorServicioActivoMesa.obtenerServicioActivoMesa(FramePrincipal.session, idMesa));
+			
+			// Llamada al controlador de estado de mesa para dejarla libre para un nuevo servicio
+			EstadoMesa.cambiarEstadoMesa(FramePrincipal.session, idMesa, false);
+		}
 	}
-
-	
-
-
-
 }

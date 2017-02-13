@@ -11,6 +11,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
 import controllers.ControladorServicio;
+import controllers.EstadoMesa;
 import models.Empleado;
 import vistas.PanelPad.OnBotonPulsado;
 
@@ -50,6 +51,8 @@ public class DialogAbrirMesa extends JOptionPane implements OnBotonPulsado, KeyL
 		
 		/*** Acciones del botón ACEPTAR ***/
 		if (confirmacionUsuario == JOptionPane.OK_OPTION){
+			// Se cambia el estado de la mesa
+			EstadoMesa.cambiarEstadoMesa(FramePrincipal.session, idBotonMesa, true);
 			// Se llama al controlador de la tabla servicio para que haga la inserción en la base de datos
 			ControladorServicio.insertarNuevoServicio(FramePrincipal.session, idBotonMesa, empleado.getIdEmpleado(),
 					Integer.valueOf(textFieldNumeroPersonas.getText().toString()) , new Date());

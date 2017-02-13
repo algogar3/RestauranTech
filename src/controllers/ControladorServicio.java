@@ -44,6 +44,7 @@ public class ControladorServicio {
 		servicio.setComensales(numeroComensales);
 		servicio.setGasto(new BigDecimal(gasto));
 		servicio.setFecha(fecha);
+		servicio.setServicioActivo(true);
 		
 		// Persistencia de los datos
 		session.persist(servicio);
