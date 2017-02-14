@@ -25,22 +25,19 @@ public class ControladorTablaProductos extends AbstractTableModel {
 		session.beginTransaction();
 		Query query = session.createQuery("from Producto where tipo_producto = '" + tipoProducto + "'");
 		productoLista = new ArrayList<Producto>(query.list());
-		
-		
 	}
-	
 	
 	@Override
 	public int getRowCount() {
-		// TODO Auto-generated method stub
+		// Obtenemos el número de filas
 		return productoLista.size();
 	}
 	
 	
 	@Override
 	public int getColumnCount() {
-		// TODO Auto-generated method stub
-		return 4;
+		// Obtenemos el número de columnas
+		return tipos.length;
 	}
 	
 	@Override

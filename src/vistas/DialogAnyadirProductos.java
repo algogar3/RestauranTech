@@ -1,5 +1,6 @@
 package vistas;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.BoxLayout;
@@ -67,6 +68,11 @@ public class DialogAnyadirProductos extends JOptionPane implements OnBotonPulsad
 		JPanel panelTablaComida = new JPanel();
 		JPanel panelTablaBebida = new JPanel();
 		JPanel panelTablaPostre = new JPanel();
+		
+		// Ponemos BorderLayout a nuestros paneles para que la tabla ocupe todo el espacio
+		panelTablaComida.setLayout(new BorderLayout());
+		panelTablaBebida.setLayout(new BorderLayout());
+		panelTablaPostre.setLayout(new BorderLayout());
 		
 		// Para que se vean los titulos de las columnas, se introduce la tabla en un JScrollPane
 		JScrollPane scrollComida = new JScrollPane(tablaComida);
