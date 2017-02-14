@@ -18,9 +18,7 @@ public class ControladorTablaProductos extends DefaultTableModel {
 	// Constructor
 	public ControladorTablaProductos(Session session, String tipoProducto){
 		String[] campos = {"DENOMINACIÓN", "TIPO PRODUCTO", "PRECIO", "DESCRIPCIÓN"};
-		
 		rellenarTabla(session, tipoProducto);
-		
 		setDataVector(rellenarTabla(session, tipoProducto), campos);
 	}
 	
@@ -36,7 +34,7 @@ public class ControladorTablaProductos extends DefaultTableModel {
 		session.beginTransaction();
 		
 		// Se obtienen los datos de la tabla
-		Iterator iter = session.createQuery("from Producto where tipo_procuto = " + tipoProducto).iterate();
+		Iterator iter = session.createQuery("from Producto where tipo_producto = '" + tipoProducto + "'").iterate();
 		while(iter.hasNext()){
 			Producto producto = (Producto) iter.next();
 			arrayProvisional.add(producto.getDenominacion());

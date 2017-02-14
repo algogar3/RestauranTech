@@ -4,6 +4,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.event.TableModelListener;
@@ -12,10 +14,6 @@ import controllers.ControladorTablaProductos;
 
 public class TablaProductos extends JTable implements TableModelListener, MouseListener{
 	
-	// Constantes
-	private final String KEY_COMIDA = "comida";
-	private final String KEY_BEBIDA = "bebida";
-	private final String KEY_POSTRE = "postre";
 	
 	// Variables
 	private JLabel labelDenominacion;
@@ -29,18 +27,17 @@ public class TablaProductos extends JTable implements TableModelListener, MouseL
 	private ControladorTablaProductos modeloTabla;
 	
 	// Constructor
-	public TablaProductos(String tipoProducto){
-		iniciarGUI(tipoProducto);
+	public TablaProductos(ControladorTablaProductos modelo){
+		iniciarGUI(modelo);
 	}
 	
 	// Método iniciarGUI
-	private void iniciarGUI(String tipoProducto){
+	private void iniciarGUI(ControladorTablaProductos modelo){
+		setModel(modelo);
 		
-		// Nuevo modelo
-		modeloTabla = new ControladorTablaProductos(FramePrincipal.session, tipoProducto);
-		
-		// Se crea un JTable
-		//tablaFutbol = new JTable(modeloTabla);
+		// Escuchadores
+			getModel().addTableModelListener(this);
+			addMouseListener(this);
 	}
 
 	@Override

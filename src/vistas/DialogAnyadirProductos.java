@@ -12,9 +12,15 @@ import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
+import controllers.ControladorTablaProductos;
 import vistas.PanelPad.OnBotonPulsado;
 
 public class DialogAnyadirProductos extends JOptionPane implements OnBotonPulsado {
+	
+	// Constantes
+	private final String KEY_COMIDA = "comida";
+	private final String KEY_BEBIDA = "bebida";
+	private final String KEY_POSTRE = "postre";
 	
 	// Variables
 	private JPanel panelContenedorGlobal;
@@ -29,7 +35,12 @@ public class DialogAnyadirProductos extends JOptionPane implements OnBotonPulsad
 	private JScrollPane panelPostre;
 	private JLabel etiquetaCantidad;
 	private JTextField textFieldCantidad;
-	
+	private ControladorTablaProductos modeloComida;
+	private ControladorTablaProductos modeloBebida;
+	private ControladorTablaProductos modeloPostre;
+	private TablaProductos tablaComida;
+	private TablaProductos tablaBebida;
+	private TablaProductos tablaPostre;
 	
 	// Cosntructor
 	public DialogAnyadirProductos(int idBotonMesa){
@@ -42,6 +53,25 @@ public class DialogAnyadirProductos extends JOptionPane implements OnBotonPulsad
 		panelComida = new JScrollPane();
 		panelBebida = new JScrollPane();
 		panelPostre = new JScrollPane();
+		
+		modeloComida = new ControladorTablaProductos(FramePrincipal.session, KEY_COMIDA);
+		modeloBebida = new ControladorTablaProductos(FramePrincipal.session, KEY_BEBIDA);
+		modeloPostre = new ControladorTablaProductos(FramePrincipal.session, KEY_POSTRE);
+		
+		tablaComida = new TablaProductos(modeloComida);
+		tablaBebida = new TablaProductos(modeloBebida);
+		tablaPostre = new TablaProductos(modeloPostre);
+		
+		// Paneles
+		JPanel panelTabla = new JPanel();
+		
+		// Para que se vean los titulos de las columnas
+		JScrollPane scroll = new JScrollPane(tablaComida);
+		panelTabla.add(scroll);
+		
+		panelComida.add(panelTabla);
+		panelBebida.add(tablaBebida);
+		panelPostre.add(tablaPostre);
 		
 		// Instanciamos el tabbedPane y metemos los paneles anteriores
 		tabbedPaneSuperior = new JTabbedPane();
