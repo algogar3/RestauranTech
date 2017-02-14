@@ -1,5 +1,2 @@
-/controllers/
 /vistas/
-/hibernate.cfg.xml
-/hibernate.reveng.xml
-/models/
+/controllers/
