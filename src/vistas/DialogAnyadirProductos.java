@@ -60,9 +60,9 @@ public class DialogAnyadirProductos extends JOptionPane implements OnBotonPulsad
 		tablaPostre = new JTable(modeloPostre);
 		
 		// No permitimos que nuestras columnas se muevan
-		tablaComida.getTableHeader().setReorderingAllowed(false) ;
-		tablaBebida.getTableHeader().setReorderingAllowed(false) ;
-		tablaPostre.getTableHeader().setReorderingAllowed(false) ;
+		tablaComida.getTableHeader().setReorderingAllowed(false);
+		tablaBebida.getTableHeader().setReorderingAllowed(false);
+		tablaPostre.getTableHeader().setReorderingAllowed(false);
 		
 		// Paneles
 		JPanel panelTablaComida = new JPanel();

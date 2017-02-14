@@ -19,6 +19,12 @@ public class ControladorTablaProductos extends AbstractTableModel {
 	
 	private ArrayList<Producto> productoLista;
 	
+	// Constructor para DialogVerComanda -> Mostrará TODOS los productos pedidos
+	public ControladorTablaProductos(Session session, int idProducto){
+		
+	}
+	
+	
 	// Constructor
 	public ControladorTablaProductos(Session session, String tipoProducto){
 		super();

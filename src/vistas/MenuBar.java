@@ -3,6 +3,7 @@ package vistas;
 import java.awt.ItemSelectable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -76,6 +77,14 @@ public class MenuBar extends JMenuBar implements ActionListener{
 			else{
 				// Login incorrecto. Se muestra un diálogo con un mensaje de error
 				new DialogLoginIncorrecto();
+			}
+		}
+		else if(e.getSource() == itemInformacion){
+			try {
+				Runtime.getRuntime().exec("hh.exe helper/Helper.chm");
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
 		}
 	}
