@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import controllers.ControladorTablaProductos;
@@ -30,54 +31,54 @@ public class DialogAnyadirProductos extends JOptionPane implements OnBotonPulsad
 	private JScrollPane scrollPaneInferior;
 	private JPanel panelCantidad;
 	private JButton botonAnyadirProducto;
-	private JScrollPane panelComida;
-	private JScrollPane panelBebida;
-	private JScrollPane panelPostre;
 	private JLabel etiquetaCantidad;
 	private JTextField textFieldCantidad;
 	private ControladorTablaProductos modeloComida;
 	private ControladorTablaProductos modeloBebida;
 	private ControladorTablaProductos modeloPostre;
-	private TablaProductos tablaComida;
-	private TablaProductos tablaBebida;
-	private TablaProductos tablaPostre;
+	private JTable tablaComida;
+	private JTable tablaBebida;
+	private JTable tablaPostre;
 	
 	// Cosntructor
 	public DialogAnyadirProductos(int idBotonMesa){
 		iniciarPaneles(idBotonMesa);
 	}
 	
+	// Método iniciarPaneles()
 	private void iniciarPaneles(int idBotonMesa){
 		
-		// Instanciamos los paneles contenidos dentro del tabbedpane
-		panelComida = new JScrollPane();
-		panelBebida = new JScrollPane();
-		panelPostre = new JScrollPane();
-		
+		// Se obtiene el modelo para cada tipo de producto
 		modeloComida = new ControladorTablaProductos(FramePrincipal.session, KEY_COMIDA);
 		modeloBebida = new ControladorTablaProductos(FramePrincipal.session, KEY_BEBIDA);
 		modeloPostre = new ControladorTablaProductos(FramePrincipal.session, KEY_POSTRE);
 		
-		tablaComida = new TablaProductos(modeloComida);
-		tablaBebida = new TablaProductos(modeloBebida);
-		tablaPostre = new TablaProductos(modeloPostre);
+		// Creación de tablas a partir de su modelo correspondiente
+		tablaComida = new JTable(modeloComida);
+		tablaBebida = new JTable(modeloBebida);
+		tablaPostre = new JTable(modeloPostre);
 		
 		// Paneles
-		JPanel panelTabla = new JPanel();
+		JPanel panelTablaComida = new JPanel();
+		JPanel panelTablaBebida = new JPanel();
+		JPanel panelTablaPostre = new JPanel();
 		
-		// Para que se vean los titulos de las columnas
-		JScrollPane scroll = new JScrollPane(tablaComida);
-		panelTabla.add(scroll);
+		// Para que se vean los titulos de las columnas, se introduce la tabla en un JScrollPane
+		JScrollPane scrollComida = new JScrollPane(tablaComida);
+		JScrollPane scrollBebida = new JScrollPane(tablaBebida);
+		JScrollPane scrollPostre = new JScrollPane(tablaPostre);
 		
-		panelComida.add(panelTabla);
-		panelBebida.add(tablaBebida);
-		panelPostre.add(tablaPostre);
+		// Se introducen los JScrollPane dentro de los paneles creados anteriormente
+		panelTablaComida.add(scrollComida);
+		panelTablaBebida.add(scrollBebida);
+		panelTablaPostre.add(scrollPostre);
+		
 		
 		// Instanciamos el tabbedPane y metemos los paneles anteriores
 		tabbedPaneSuperior = new JTabbedPane();
-		tabbedPaneSuperior.addTab("Comida", panelComida);
-		tabbedPaneSuperior.addTab("Bebida", panelBebida);
-		tabbedPaneSuperior.addTab("Postre", panelPostre);
+		tabbedPaneSuperior.addTab("Comida", panelTablaComida);
+		tabbedPaneSuperior.addTab("Bebida", panelTablaBebida);
+		tabbedPaneSuperior.addTab("Postre", panelTablaPostre);
 		tabbedPaneSuperior.setPreferredSize(new Dimension(600,200));
 		
 		// Instanciamos el scrollPane
