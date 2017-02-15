@@ -24,7 +24,7 @@ public class PanelPad extends JPanel implements ActionListener {
 	private JButton boton9;
 	private JButton boton0;
 	private JButton botonDecimal;
-	private JButton botonBorrar;
+	public JButton botonBorrar;
 	private String buffer;
 	private OnBotonPulsado escuchador;
 	private HashMap<JButton, String> mapBotones;

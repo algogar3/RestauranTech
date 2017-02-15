@@ -1,8 +1,10 @@
 package vistas;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -10,14 +12,19 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableCellRenderer;
 
 import controllers.ControladorCobrosYFacturacion;
 import controllers.ControladorServicioActivoMesa;
+import controllers.ControladorTablaComandas;
+import controllers.ControladorTablaProductos;
 import controllers.EstadoMesa;
 import vistas.PanelPad.OnBotonPulsado;
 
@@ -36,6 +43,9 @@ public class DialogVerComanda extends JOptionPane implements OnBotonPulsado, Act
 	private JLabel cambio;
 	private JButton botonCobrar;
 	private int idMesa;
+	private ControladorTablaComandas modeloComanda;
+	private JTable tablaComanda;
+	DecimalFormat df = new DecimalFormat("#.00");
 	
 	// Constructor
 	public DialogVerComanda(int idBotonMesa){
@@ -46,6 +56,38 @@ public class DialogVerComanda extends JOptionPane implements OnBotonPulsado, Act
 	private void iniciarGUI(int idBotonMesa){
 		// Se recoge el valor de la variable idMesa
 		idMesa = idBotonMesa;
+		
+		/************* INICIO TABLAS *********************/
+		
+		// Se obtiene el modelo
+		modeloComanda = new ControladorTablaComandas(FramePrincipal.session, 
+				ControladorServicioActivoMesa.obtenerServicioActivoMesa(FramePrincipal.session, idMesa).getIdServicio());
+		
+		// Creación de la tabla
+		tablaComanda = new JTable(modeloComanda);
+		
+		// Centrado de los valores en las columnas
+        DefaultTableCellRenderer modelocentrar = new DefaultTableCellRenderer();
+        modelocentrar.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaComanda.getColumnModel().getColumn(0).setCellRenderer(modelocentrar);
+        tablaComanda.getColumnModel().getColumn(1).setCellRenderer(modelocentrar); 
+		
+		// No permitimos que nuestras columnas se muevan
+		tablaComanda.getTableHeader().setReorderingAllowed(false);
+		
+		// Paneles
+		JPanel panelTablaComanda = new JPanel();;
+		
+		// Ponemos BorderLayout a nuestros paneles para que la tabla ocupe todo el espacio
+		panelTablaComanda.setLayout(new BorderLayout());
+		
+		// Para que se vean los titulos de las columnas, se introduce la tabla en un JScrollPane
+		JScrollPane scroll = new JScrollPane(tablaComanda);
+
+		// Se introducen los JScrollPane dentro de los paneles creados anteriormente
+		panelTablaComanda.add(scroll);
+
+		/************ FIN TABLAS **************/
 		
 		// Panel verComanda
 		panelVerComanda = new JScrollPane();
@@ -58,7 +100,7 @@ public class DialogVerComanda extends JOptionPane implements OnBotonPulsado, Act
 		
 		// Componentes del panel cobrar
 		importe = new JLabel("Total mesa: " + 
-		ControladorServicioActivoMesa.obtenerServicioActivoMesa(FramePrincipal.session, idMesa).getGasto().toString() + "€");
+		df.format(ControladorServicioActivoMesa.obtenerServicioActivoMesa(FramePrincipal.session, idMesa).getGasto()).toString() + "€");
 		panelCobrar.add(importe);
 		// Subpanel cantidad entregada
 		panelCantidadEntregada = new JPanel();
@@ -79,7 +121,7 @@ public class DialogVerComanda extends JOptionPane implements OnBotonPulsado, Act
 		// Panel contenedor iquierdo
 		panelContenedorIquierdo = new JPanel();
 		panelContenedorIquierdo.setLayout(new BoxLayout(panelContenedorIquierdo, BoxLayout.Y_AXIS));
-		panelContenedorIquierdo.add(panelVerComanda);
+		panelContenedorIquierdo.add(panelTablaComanda);
 		panelContenedorIquierdo.add(panelCobrar);
 		
 		// Panel pad

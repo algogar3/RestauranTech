@@ -2,6 +2,10 @@ package vistas;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -13,11 +17,14 @@ import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 
+import controllers.ControladorComanda;
 import controllers.ControladorTablaProductos;
 import vistas.PanelPad.OnBotonPulsado;
 
-public class DialogAnyadirProductos extends JOptionPane implements OnBotonPulsado {
+public class DialogAnyadirProductos extends JOptionPane implements OnBotonPulsado, MouseListener, ActionListener {
 	
 	// Constantes
 	private final String KEY_COMIDA = "comida";
@@ -28,6 +35,7 @@ public class DialogAnyadirProductos extends JOptionPane implements OnBotonPulsad
 	private JPanel panelContenedorGlobal;
 	private JPanel panelContenedorIzquierdo;
 	private JPanel panelContenedorDerecho;
+	private PanelPad panelPad;
 	private JTabbedPane tabbedPaneSuperior;
 	private JScrollPane scrollPaneInferior;
 	private JPanel panelCantidad;
@@ -40,6 +48,8 @@ public class DialogAnyadirProductos extends JOptionPane implements OnBotonPulsad
 	private JTable tablaComida;
 	private JTable tablaBebida;
 	private JTable tablaPostre;
+	private int idMesa;
+	private String nombreProducto;
 	
 	// Cosntructor
 	public DialogAnyadirProductos(int idBotonMesa){
@@ -48,6 +58,9 @@ public class DialogAnyadirProductos extends JOptionPane implements OnBotonPulsad
 	
 	// Método iniciarPaneles()
 	private void iniciarPaneles(int idBotonMesa){
+		
+		// Se recupera el id de la mesa
+		idMesa = idBotonMesa;
 		
 		// Se obtiene el modelo para cada tipo de producto
 		modeloComida = new ControladorTablaProductos(FramePrincipal.session, KEY_COMIDA);
@@ -58,6 +71,30 @@ public class DialogAnyadirProductos extends JOptionPane implements OnBotonPulsad
 		tablaComida = new JTable(modeloComida);
 		tablaBebida = new JTable(modeloBebida);
 		tablaPostre = new JTable(modeloPostre);
+		
+		// Escuchadores
+		tablaComida.addMouseListener(this);
+		tablaBebida.addMouseListener(this);
+		tablaPostre.addMouseListener(this);
+		
+		// Centrado de los valores en las columnas
+        DefaultTableCellRenderer modelocentrar = new DefaultTableCellRenderer();
+        modelocentrar.setHorizontalAlignment(SwingConstants.CENTER);
+        // Tabla comida
+        tablaComida.getColumnModel().getColumn(0).setCellRenderer(modelocentrar);
+        tablaComida.getColumnModel().getColumn(1).setCellRenderer(modelocentrar);
+        tablaComida.getColumnModel().getColumn(2).setCellRenderer(modelocentrar);
+        tablaComida.getColumnModel().getColumn(3).setCellRenderer(modelocentrar);
+        // Tabla bebida
+        tablaBebida.getColumnModel().getColumn(0).setCellRenderer(modelocentrar);
+        tablaBebida.getColumnModel().getColumn(1).setCellRenderer(modelocentrar);
+        tablaBebida.getColumnModel().getColumn(2).setCellRenderer(modelocentrar);
+        tablaBebida.getColumnModel().getColumn(3).setCellRenderer(modelocentrar);
+        // Tabla postre
+        tablaPostre.getColumnModel().getColumn(0).setCellRenderer(modelocentrar);
+        tablaPostre.getColumnModel().getColumn(1).setCellRenderer(modelocentrar);
+        tablaPostre.getColumnModel().getColumn(2).setCellRenderer(modelocentrar);
+        tablaPostre.getColumnModel().getColumn(3).setCellRenderer(modelocentrar);
 		
 		// No permitimos que nuestras columnas se muevan
 		tablaComida.getTableHeader().setReorderingAllowed(false);
@@ -103,7 +140,7 @@ public class DialogAnyadirProductos extends JOptionPane implements OnBotonPulsad
 		panelContenedorIzquierdo.add(scrollPaneInferior);
 		
 		// Instanciamos el panel del pad numérico
-		PanelPad panelPad = new PanelPad();
+		panelPad = new PanelPad();
 		panelPad.setOnBotonPulsadoListener(this);
 		
 		// Instanciamos el panel para especificar la cantidad de productos introducidos
@@ -111,6 +148,7 @@ public class DialogAnyadirProductos extends JOptionPane implements OnBotonPulsad
 		etiquetaCantidad = new JLabel("Cantidad: ");
 		textFieldCantidad = new JTextField(10);
 		botonAnyadirProducto = new JButton("Añadir producto");
+		botonAnyadirProducto.addActionListener(this);
 		panelCantidad.add(etiquetaCantidad);
 		panelCantidad.add(textFieldCantidad);
 		panelCantidad.add(botonAnyadirProducto);
@@ -131,10 +169,75 @@ public class DialogAnyadirProductos extends JOptionPane implements OnBotonPulsad
 		showConfirmDialog(this, panelContenedorGlobal, "Introduce productos para la mesa " + idBotonMesa, JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 	}
 
+	// Desarrollo de los métodos de la interfaz MouseListener
 	@Override
 	public void botonPulsado(String buffer) {
 		// TODO Auto-generated method stub
 		textFieldCantidad.setText(buffer);
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		// Se selecciona un producto de la tabla comida
+		if(e.getSource() == tablaComida){
+			int fila = tablaComida.rowAtPoint(e.getPoint());
+			
+			int filaSeleccionada = fila;
+			nombreProducto = tablaComida.getValueAt(filaSeleccionada, 0).toString();
+		}
+		
+		// Se selecciona un producto de la tabla bebida
+		if(e.getSource() == tablaBebida){
+			int fila = tablaBebida.rowAtPoint(e.getPoint());
+			
+			int filaSeleccionada = fila;
+			nombreProducto = tablaBebida.getValueAt(filaSeleccionada, 0).toString();
+		}
+		
+		// Se selecciona un producto de la tabla postre
+		if(e.getSource() == tablaPostre){
+			int fila = tablaPostre.rowAtPoint(e.getPoint());
+			
+			int filaSeleccionada = fila;
+			nombreProducto = tablaPostre.getValueAt(filaSeleccionada, 0).toString();
+		}
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	// Desarrollo de los métodos de la interfaz ActionListener
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// Se llama al controlador para que genere una nueva comanda
+		ControladorComanda.crearComanda(FramePrincipal.session, idMesa, nombreProducto, 
+				Integer.valueOf(textFieldCantidad.getText().toString()));
+		
+		// Se borra el contenido del JTextField de cantidad
+		panelPad.botonBorrar.doClick();
 	}
 	
 }
